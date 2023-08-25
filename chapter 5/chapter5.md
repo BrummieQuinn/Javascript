@@ -736,7 +736,7 @@ for(let array in myArray) {
 (see chapter5.js)
 
 ### looping over objects by converting to an array:
-
+(25/08/2023)
 - when object converted to an array 
     - any loop can be used
 - converting can be done by:
@@ -757,4 +757,194 @@ let car = {
 ```
 - use for in loop to loop over keys of object
 - use for of loop if converted to an array first
-- use
+- use Object.keys(nameOfObject)
+    - built in function
+    - takes an object
+    - grabs all properties of this object
+    - converts to an array
+- example:
+```Javascript
+let arrKeys = Object.keys(car);
+console.log(arrKeys);
+// output: ['model', 'make', 'year', 'colour']
+
+// loop over properties of array with for of loop
+for(let key of Object.keys(car)) {
+    console.log(key);
+}
+// output: model make year colour
+```
+
+- for of loop can loop over values of an object 
+    - converts object to an array
+    - use Object.values(nameOfObject)
+
+- example:
+```Javascript
+for (let key of Object.values(car)) {
+    console.log(key);
+}
+// loop over the array: can use length and index strategy
+let arrKeys = Object.key(car);
+for(let i = 0; i < arrKeys.length; i++) {
+    console.log(arrKeys[i] + ":" + car[arrKeys[i]]);
+}
+// output: model: Golf make: Volkswagen year: 1999 colour: black
+```
+- to loop over both arrays at the same time 
+    - use for of loop
+    - use Object.entries() first
+
+- example:
+```Javascript
+let arrEntries = Object.entries(car);
+console.log(arrEntries);
+// output: [['model', 'Golf'], ['make' 'Volkswagen'], ['year', 1999], ['colour', 'black']]
+// returns 2-dimensional array with key/value pairs
+// loop over this with for of 
+for(const [key, value] of Object.entries(car)) {
+    console.log(key, ":", value);
+}
+//output: model: Golf make: Volkwagen year: 1999 colour: black
+```
+
+### break and continue:
+- break and continue keywords control flow of execution of loop
+    -break: stop the loop and move to code **below** the loop
+    
+    - continue: stop current iteration and move back to **top** of loop
+        - if for loop used will perform statement and check condition
+- example: (see example.js)
+```Javascript
+let cars = [
+    {
+        model: 'Golf',
+        make: 'Volkswagen',
+        year: 1999,
+        colour: 'black',
+    },
+    {
+        model: 'Picanto',
+        make: 'Kia',
+        year: 2020,
+        colour: 'red',
+    },
+    {
+        model: 'Peugeot',
+        make: '208',
+        year: 2021,
+        colour: 'black',
+    },
+    {
+        model: 'Fiat',
+        make: 'Punto',
+        year: 2020,
+        colour: 'black',
+    }
+];
+```
+*NOTE:* I think my best bet to understanding break and continue is to follow along with the example give in examples.js
+
+I think this actually might help me get unstuck in freecodecamp javascript course - pay attention to conditions being added to find object in array
+
+- as when using break to end a switch statement
+    - when the break statement executed in a loop it will end
+    - even if condition is still true
+
+- example.js explained:
+    - looks for a car with year 2020 or later
+    - looks for a car that is also black
+    - last car in array also an option however the break ensures it will stop looking for other cars
+    
+- best practice and break command:
+    - not best practice to use break
+```Javascript
+while (true) {
+// this condition is not an actual condition and code hard to read
+// actually a statement that runs forever
+    if (superLongArray[0] != 42 && superLongArray.length > 0)
+} else {
+    console.log('found 42!');
+// break statement here is a workaround
+    break;
+}
+// better to write without break - without using while(true)
+// while(true) = forever
+// condition of while easier to read and includes notFound flag
+while(superLongArray.length > 0 && notFound) {
+// specify condition: should evaluate to true/false
+    if(superLongArray[0] != 42) {
+        superLongArray.shift();
+    } else {
+        console.log('Found 42!');
+// updates status of notFound to end loop with condition
+        notFound = false
+    }
+}
+```
+- use the condition to break out the loop 
+    - prevents infinite loop
+    - code easier to read
+
+- continue used to move on to next iteration of loop
+    - quits current iteration and moves back up to check condition to start new iteration
+    (see examples.js)
+
+- use caution if using while loop and continue
+- example:
+```Javascript
+// only log odd numbers
+// this would output 1 before becoming stuck in an infinite loop
+let i = 1;
+while (i < 50) {
+    // remember to use increment counter before using continue
+    i++;
+    if((i - 1) % 2 ===0) { // subtract 1 from i here
+// continue here is before it can increment
+// will continue to run again and and again
+        continue;
+    }
+    console.log(i);
+    // i++;: move increment counter from here
+}
+
+// an even better way is without continue at all - error chance smaller:
+for(let i = 1; i < 50; i = i + 2) {
+    console.log(i);
+} 
+// alot shorter and more readable
+```
+- break and continue best used with loops over large data sets - possibly external
+    - would give less influence to apply other types of control
+    - not best practice for basic examples
+
+
+### Practice exercise 5.8:
+- how to create a string with all the digits as it loops through them
+    - set a value to skip by adding a condition that will use continue to skip matching condition
+    - second option: do the same with break
+
+1. set up a string variable to use as output
+
+2. select a number to skip 
+    - set number as a variable
+
+3. create a for loop that counts to 10
+
+4. add a condition to check if value of the looped variable is equal to the number that should be skipped
+
+5. if a number is to be skipped in condition 'continue' to next number
+
+6. as values iterated through
+    - append the new count value to the end of the main output variable
+
+7. output main variable after loop completes
+
+8. reuse code 
+    - change continue to break
+    - should now stop at skip value
+
+* Planning:
+```Javascript
+let string =
+```
