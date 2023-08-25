@@ -58,10 +58,9 @@ while (notFound && array.length > 0) {
 }
 ```
 - flow of above code:
-        - the while loop checks the first value of the array[0] for the value 'Louiza'
-        - when it is not found, the array.shift() method removes the first element of the array
-        - each iteration for as long as i is < array.length it will remove an element until 'Louiza' is at array[0] and console.log not found
-        - when the element value it is looking for is found it will log this to the console
+    - the while loop checks the first value of the array[0] for the value 'Louiza' - when it is not found, the array.shift() method removes the first element of the array
+    - each iteration for as long as i is < array.length it will remove an element until 'Louiza' is at array[0] and console.log not found
+    - when the element value it is looking for is found it will log this to the console
     
     - output would be:
 ```Javascript
@@ -946,5 +945,148 @@ for(let i = 1; i < 50; i = i + 2) {
 
 * Planning:
 ```Javascript
-let string =
+// string variable for output
+let string = 'Found!';
+// number to skip variable
+let numberToSkip = 5;
+// for loop to 10
+for (let i = 0; i < 10; i++) {
+    // add condition equal to number to skip
+    if (i === numberToSkip) {
+// if number to be skipped in condition - continue
+        continue;
+// append new count value to end of main output variable
+        string += i;
+    }
+// output after string completes
+    console.log(string)
+}
+
 ```
+- well thats the plan I'm starting with - probably wrong in several places
+- BUT - I think its a good outline to work from:
+    - I'm still not comfortable with using psuedocode before using actual javascript to plan my code.  I even know how helpful it is after researching it, but for some inexplicable reason I find it easier to plan using javascript syntax
+    - it feels like if I don't plan in syntax I'll be stuck writing what I want to do in plain words - which is something I seem to do in my head.
+    - I already know what I want it to do when I read the question (thought process) :
+        - inputs and outputs are confirmed
+        - group steps into order of execution if possible 
+        - being aware that I might have missed a step or the step being too small(watch for side effects)
+        - I also imagine what the steps would look like in javascript
+    - example:
+    step 1: set up string variable for output 
+        - before even contemplating this I looked through the rest of the question to see how this output variable would be used
+        - I extrapolated that this variable should output a message based on usage
+    - I do like that I've been searching my notes for answers more than searching the internet
+    - I also don't mind that my code is messy or not optimised, that'll come.  At the moment I'm just surprising myself that my answers have come from within and my notes - not the internet!
+    - for this plan I looked at my notes for where to place the continue command but the rest was all me - so happy!
+    - a few minor tweaks made to the plan:
+        - adding string appending value e.g. string += i inside loop NOT the condition
+        - that just meant the console.log ended up moving down one
+        - I knew something was up when my output wasn't empty it was logging for every number including the condition that really tipped me off that something needed to move and it wasn't the continue - that left the appended string which as soon as it was moved to the loop, this led to the desired output of everything logged except numberToSkip and I was  able to do the same with break which logged everything up to numberToSkip
+
+- break, continue and nested loops:
+    - when break or continue used in nested loop, outer loop will note break
+- example (see examples.js):
+```Javascript
+// array of arrays
+let groups = [
+    ['martin', 'daniel', 'keith'],
+    ['margot', 'marina', 'ali'],
+    ['helen', 'jonah', 'sambikos'],
+];
+```
+- looking for all groups that have 2 names beginning with 'm'
+- if found it will be logged
+
+1. use first for loop over top-level array
+    - counter is 'matches' initial value 0
+    - loops over the values
+
+2. use second for loop over values with first if statement
+    - when a value startsWith('m')
+    - matches increases by 1
+    - use else block for continue
+
+3. second if statement checks if number of matches equals 2
+    - log output for matches with a string
+    - log output for groups[i] the array matching conditional statements
+    - break is used to break out of inner loop if 2 matches found
+    - outer loop will continue to next top-level array
+
+- to break the array down further into the individual values that match
+- example:
+```Javascript
+// for of loop through top-level array groups
+for (let group of groups) {
+    // for of loop through values in group 
+    for (let member of group) {
+        // conditional to find values in members that match
+        if (member.startsWith('m')) {
+            console.log('found one:', member);
+            break;
+        }
+    }
+}
+// output: found one: martin etc...
+```
+- loops over arrays:
+    - for every array it will check value and evaluate if it starts with an m
+    - if it does, inner loop breaks
+    - only first value in an array will be found even if their are multiple
+    - due to iteration of array having break - continues to next array
+
+- the first example (example.js) for loop is the best way to find groups
+    - breaks out of inner loops as soon as match found
+    - useful when needing to make sure an array in a data set contains at least one of something
+
+- nature of for of loop doesn't return index/position found
+    - will break and returns the value of element of the element to use
+    - if more is needed use counters that update each iteration
+
+- break and continue and labelled blocks:
+    - use to see whether only one of all elements in array there
+    - use to break out of outer loop from inner loop
+    - have to give loop a label for this to work
+- example:
+```Javascript
+outer:
+for (let group of groups) {
+    inner:
+    for (let member of group) {
+        if (member.startsWith('m')) {
+            console.log('found one:', member);
+            break outer;
+        }
+    }
+}
+// output: found one: martin
+```
+- give loop block a label e.g. outer: and inner:
+    - will only log first element found
+    - due to breaking out of the outer loop which ends all loops
+    - can use continue in a similar way to keep searching for the first element of next array (see example.js)
+
+### Chapter 5 Project:
+- math multiplication table:
+- create a math multiplication table using loops
+- suggested steps:
+1. set up a blank to contain final multiplication table
+
+2. set value variable 
+    - specify number of values to multiply with one another 
+    - log results
+
+3. create outer for loop 
+    - iterate through each row
+    - create temp array variable to store row values
+    - for each row an array of cells nested into final table
+
+4. create inner for loop
+    - for column values
+    - push multiplies row and column values to temp array
+
+5. add temp row data containing calculated solutions to final table
+    - final result will add row of values for the calculations
+
+* Planning:
+

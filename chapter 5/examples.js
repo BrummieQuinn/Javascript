@@ -59,3 +59,39 @@ for (let car of cars) {
     // the output will be all cars that meet the conditions
     }
 }
+
+// break and continue in nested loops
+// array of arrays
+let groups = [
+    ['martin', 'daniel', 'keith'],
+    ['margot', 'marina', 'ali'],
+    ['helen', 'jonah', 'sambikos'],
+];
+// 1.
+for (let i = 0; i < groups.length; i++) {
+  let matches = 0;
+  // 2.
+  for (let j = 0; j < groups[i].length; j++) {
+    if (groups[i][j].startsWith('m')) {
+      matches++;
+    } else {
+      continue;
+    }
+    // 3.
+    if (matches === 2) {
+      console.log('found a group with two names starting with an m:');
+      console.log(groups[i]);
+      break;
+    }
+  }
+}
+
+// break, continue and labelled blocks
+outer: for (let group of groups) {
+  inner: for (let member of group) {
+    if (member.startsWith('m')) {
+      console.log('found one:', member);
+      continue outer;
+    }
+  }
+}

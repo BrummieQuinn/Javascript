@@ -195,3 +195,37 @@ for (let person of personArray) {
 }
 
 // Practice exercise 5.8:
+// string for output
+let string = '';
+// skip variable
+let numberToSkip = 5;
+// for loop
+for (let i = 0; i < 10; i++) {
+    // add skip condition
+    if (i === numberToSkip) {
+       // add continue
+        continue;
+    }
+     // append new count
+        string += i;
+}
+console.log(string);
+// doing the same with break
+// string for output
+let string2 = '';
+// skip variable
+let numberToSkip2 = 5;
+// for loop
+for (let i = 0; i < 10; i++) {
+    // add skip condition
+    if (i === numberToSkip2) {
+       // add break
+        break;
+    }
+// append new count
+    string2 += i;
+}
+console.log(string2);
+
+// Chapter 5 Project:
+// math multiplication table
