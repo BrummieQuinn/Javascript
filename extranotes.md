@@ -10,7 +10,7 @@ I'll also (maybe) look for some coding challenges that require me to use what I'
 
 so this might also turn into a challenge planning page with a js file with solutions i've worked on
 
-but yeah, not feeling too confident, so this:
+but yeah, anything i'm not too confident on will be here:
 ***
 
 ## statements:
@@ -235,3 +235,15 @@ for (let i in contacts) {
 return 'No such contact'
 ```
 
+## objects and arrays extras:
+
+- (.) accesses a property based on literal name
+- [] accesses a property as an expression to be evaluated
+
+- object properties can change
+    - a single object value can have different content at different times
+
+- having to references to an object different to having two object with the same properties
+
+- objects compared by identity - only true if value the same
+    - an object with identical propertied would return false
