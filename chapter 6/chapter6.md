@@ -425,3 +425,124 @@ function calculator(a, b) {
 - creating the calculator function I'll admit caused me to dither over where to place it, but realised the question was very explicit about what should be in the loop, it also clicked when I finally noticed I was to call the function in the loop
 - once over that particular hurdle I was surprised at how quickly the rest of the function came including pushing the values to the array. 
 - I didn't need to check anything but the question to reach a solution
+- really, really, hoping this is the power of hardwork and not a fluke of some kind
+(see chapter6.js)
+
+### returning with arrow functions:
+- one line arrow function returns without keyword
+- example:
+```Javascript
+let addTwoNumbers = (x, y) => x + y;
+// call and store
+let result = addTwoNumbers(12, 15);
+console.log(result);
+// output: 27
+```
+- multiline arrow function requires return keyword
+
+### variable scope in functions:
+- often considered challenging
+- scope:
+    - defines where a certain variable can be accessed
+    - in scope - can access variables
+    - out of scope - cannot access variables
+
+- local variables in functions:
+    - only in scope in function its defined in
+    - true for variables defined with let and var
+    - function parameters are local variables
+- example:
+```Javascript
+function testAvailability(x) {
+    console.log('available here:', x);
+}
+testAvailability('Hi');
+console.log('not available here:', x);
+// output: available here: hi
+// output: referenceError: x is not defined
+```
+- called inside function x is logged
+- called outside function console.log fails as x is local to the function testAvailability()
+    - function parameters only in scope within function
+
+- this is also true for variables defined inside a function too
+- example:
+```Javascript
+function testAvailability() {
+    let y = 'local variable';
+    console.log('available here:', y);
+}
+testAvailability();
+console.log('not available here:', y);
+// output: available here: local variable
+// output: referenceError: y is not defined
+```
+- combining local variables and return allows values to be available outside of function
+    - if variable values required outside of functon return them
+    - cannot return the variable itself
+    - store the value in a different variable outside of function
+- example:
+```Javascript
+function testAvailability() {
+    let y = 'returned value';
+    console.log('available here:', y);
+}
+// could have also been declared as variable y but would have been confusing (two different y variables)
+let z = testAvailability();
+console.log('outside function:', z);
+console.log('not available here:', y);
+// output: available here: returned value
+// output: outside function: returned value
+// output: referenceError: y is not defined
+```
+- let versus var variables:
+- var is function-scoped
+- let is block-scoped e.g. {
+    let available in here
+}
+- var example:
+```Javascript
+function doingStuff() {
+    if(true) {
+        var x = 'local';
+    }
+    console.log(x);
+}
+doingStuff();
+// output: local
+```
+- being function-scoped var is available anywhere within function block
+    - even before defining with value undefined
+    - after if block ends - x still accessible
+- let example:
+```Javascript
+function doingStuff() {
+    if(true) {
+        let x = 'local';
+    }
+    console.log(x);
+}
+doingStuff();
+// output: referenceError: x is not defined
+```
+- being block-scoped let is only available in the block defined in
+    - x out of scope when if block ends
+
+- order of declaration:
+- let:
+    - trying to use value before defining it with let will give reference error: x is not defined
+    - variables declared with let cannot be accessed before being defined 
+    - even in same block
+- var:
+    - simply gives undefined
+    - known as 'hoisting'
+    - when using variable before being declared will result in undefined, not a referenceError
+
+- const scope:
+    - block-scoped like let
+
+### global variables:
+- declared outside a function and other code blocks
+    - accessible in function or block defined
+    - also accessible to 'lower' scopes
+    - varible declared at top level of program available throughout program 
