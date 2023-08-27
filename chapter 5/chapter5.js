@@ -229,3 +229,21 @@ console.log(string2);
 
 // Chapter 5 Project:
 // math multiplication table
+// create blank array 
+let multiplicationTable = []; 
+let value = 12;
+// create outer loop to iterate through each row 
+for (let i = 0; i < value; i++) { 
+    // create temp array to store row values leave empty for now 
+    let tempArray = [];
+// create inner for loop for column values     
+for (let j = 0; j < value; j++) {
+//    push values to temp array  j * i      
+tempArray.push(j * i); 
+} 
+
+//    push temp array to multiplication table array        
+multiplicationTable.push(tempArray);
+}
+// log to check output 
+console.table(multiplicationTable);

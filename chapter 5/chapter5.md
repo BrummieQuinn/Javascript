@@ -1089,4 +1089,92 @@ for (let group of groups) {
     - final result will add row of values for the calculations
 
 * Planning:
+```Javascript
+// create blank array
+let multiplicationTable = [];
+// specify how many values to multiply with one another
+let value = 5;
+// create outer loop to iterate through each row
+for (let i = 0; i < 12; i++) {
+    // create temp array to store row values
+    let tempArray = [i];
+    // create inner for loop for column values
+    for (let j = 0; j < 12; j++) {
+    // create column variable for multiplication
+       let columns = j * value;
+    //    push values to temp array
+       tempArray.push(columns);
+       }
+    //    push temp array to multiplication table array
+       multiplicationTable.push(tempArray);
+    }
+    // log to check output
+    console.table(multiplicationTable);
+```
+*NOTE:* so this is another plan based on suggested steps.
 
+I'm happy with it as far as the second for loop.  But nothing different is coming to mind at present on how to change it so I guess its time to test and adjust
+
+I'm learning to stay flexible
+
+It's pretty important to have at least one idea to try - I think its just as important to have a toolbox like with css where I can keep trying different things to get my desired result if my first attempt doesn't work
+
+I guess I just want to have core options I can manipulate to a solutution
+
+I think I can use practice exercise 5.4 and 5.5 to help me build this,
+
+(26/08/2023) 
+before going to sleep last night I decided to add a counter like with the previous exercise while it seems the right direction there are a few things I might have to tweak
+
+Once again I was on the right path to a certain point:
+- I didn't need the counter variable this time
+    - while the project was overall similar to the two previous practice exercises it wasn't the same in terms of needing a counter since the loop I was using both times did that for me, once that became clear I  removed this
+- not assigning i inside the tempArray = [i]
+    - if the counter was giving me output I didn't need, assingning i to the index filled the column with an extra row not needed which pushed the zeros column to the right leading to the multiplication tables not being in sync with the rows
+- I really misunderstood that the value variable representented the times tables themselves not what is multiplied by 
+    - since I know now that the value variable was referring to which multiplications tables (ascending) moving values into the middle for expression instead of hardcoding the rows and columns with actual number, this also had the benefit of freeing the .push()parentheses for the true calculation of j * i
+- with these three changes I was able to build the multiplication table
+- could I figure out something similar and equally open to misinterpretation? not confident
+
+```Javascript
+// create blank array 
+let multiplicationTable = []; 
+// specify how many multiplication tables e.g 1 * 1 - 12, 2 * 1 - 12 etc
+let value = 5; 
+// let counter = 0; unecessary counter variable
+// create outer loop to iterate through each row 
+for (let i = 1; i <= value; i++) { 
+ // create temp array to store row values  - leave empty for next step   
+    let tempArray = [];
+ 
+// create inner for loop for column values     
+for (let j = 1; j <= value; j++) {
+// create column variable for multiplication        
+// let columns = j * value;  didn't need the new columns variable or calculation
+//    push values to temp array        
+tempArray.push(j * i); 
+} 
+// counter++; (This counter is not actually necessary)
+//    push temp array to multiplication table array        
+multiplicationTable.push(tempArray);
+}
+// log to check output 
+console.table(multiplicationTable); 
+```
+
+### summary:
+- one thing I need to remember is when looping through an array containing an objects I can use the for in loop to extract the objects into declared variable.
+- example 
+```Javascript
+// first variable declared in for in loop - gives access to the objects held by the array
+for (let i in contacts) {
+// declare new variable here - variable will now hold reference to each object 
+let contact = contacts[i];
+// use this variable to evaluate any conditional statements related to object contacts
+
+}
+```
+- for/in loops over keys and for/of loops over values:
+    - super useful for iterating arrays and objects
+
+    
