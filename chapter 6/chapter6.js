@@ -58,10 +58,36 @@ for (let i = 0; i < 10; i++) {
     let squared = i * i;
 
     let result = calculator(multiplyByFive, squared);
-    
+
     values.push(result);
     console.log(values);
 }
 function calculator(a, b) {
     return a + b;
 }
+
+// practice exercise 6.5:
+
+// create a variable
+let string = '1000';
+
+// create an IIFE:
+(function () {
+    // create variable of same name with new value
+    let string = '2000';
+    console.log(string);
+})();
+// create an IIFE expression:
+let result1 = (function () {
+   
+    let result2 = '3000';
+    return result2;
+})();
+console.log(`result1: ${result1}`);
+
+// create an anonymous function with a parameter:
+(function (result2) {
+    console.log(`I am result2: ${result2}`)
+})('3000');
+
+// practice exercise 6.6:

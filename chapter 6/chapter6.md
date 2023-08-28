@@ -543,6 +543,159 @@ doingStuff();
 
 ### global variables:
 - declared outside a function and other code blocks
-    - accessible in function or block defined
+    - always in scope once declared
+    - accessible in function or block
     - also accessible to 'lower' scopes
-    - varible declared at top level of program available throughout program 
+    - varible declared at top level of program
+    - available throughout program
+(28/08/2023)    
+- can hide accessibility within a function:
+    - specify new variable with same name within that scope
+    - can use let, const and var
+    - in the case of const - not the same as changing value
+        - created new const variable that overrides the first one in the inner scope of the function
+    - cannot specify two let or const in same scope
+        - can do that for var but advised not to as can cause confusion in the program
+
+- create a variable with same name inside a function:
+    - a variables value will be used when referred to in the scope of function
+- example:
+```Javascript
+let x = 'global';
+
+function doingStuff() {
+    let x = 'local';
+    console.log(x);
+}
+doingstuff();
+console.log(x);
+// output: local
+// output: global
+// inside the function: the variable used is x = local
+// outside function: variable used is x = global
+```
+- pay extra attention not to mix up names of variables in local and global scope
+    - same true for parameter names
+- example:    
+```Javascript
+let x = 'global';
+
+function doingStuff(x) {
+    console.log(x);
+}
+doingStuff('parameter');
+// output: parameter
+```
+- should not rely on global variables
+    - *NOTE:* I would assume this to be something to do with modular functions and keeping functions self contained within programs
+    - since local variables override global variables:
+        - best to work with local variables within functions
+        - gives more control over code
+
+- declaring a variable without let, var or const:
+    - doing this within a function will lead to interpreter assigning global scope to variable
+- example:
+```Javascript
+function javascriptQuirk(){
+    x = 'guess my scope...';
+    console.log('inside the function', x);
+}
+javascriptQuirk();
+console.log('outside the function', x);
+// output: inside the function guess my scope...
+// output: outside the function guess my scope...
+```
+
+- immediately invoked function expression(IIFE):
+    - a function expressed to be immediately invoked
+    - an anonymous function as it self-executes (since the names for functions are necessary to call them later) 
+    - useful for initialising something 
+    - many design patterns make use of this e.g. creating:
+        - private variables
+        - public variables
+        - functions
+- an IIFE declared at top-level will not mean its content accessible from outside
+- syntax:
+```Javascript
+// function surrounded by () creates a function instance
+(function () {
+    console.log('IIFE');
+    // executed with final ();
+})('parameters go here');
+
+// combine with arrow function:
+(() => {
+    console.log('run right away');
+    // 
+})();
+```
+
+### practice exercise 6.5:
+- use IIFE to create immediately invoked functions - observe how scope is affected
+
+1. create a variable value with let
+    - assign string value '1000'
+
+2. create an IIFE function
+    - assign a new value to variable of same name
+    - output local value from within function
+
+3. create an IIFE expression
+    - assign a new result variable 
+    - assign a new value to variable of same name
+    - return local value to result variable and invoke
+    - output result variable along with variable name previously used
+    - what is the value now?
+
+4. create an anonymous function that has a parameter
+    - add logic to assign a passed-in value to the same variable name as other steps
+    - output as part of a string sentence
+    - invoke and pass in desired value within rounded brackets
+
+### recursive functions:
+- call the same function from inside the function
+    - elegant solution to complex problems
+- example:
+```Javascript
+// recursive function with conditional to give a stopping point - without it, it would never stop
+function recursive(nr) {
+    console.log(nr);
+    if (nr < 0) {
+        recursive(--nr);
+    }
+}
+// will print 3 then counts down until 0
+recursive(3);
+```    
+- the steps of the above function:
+    - recursive(3)
+        - recursive(2)
+            - recursive(1)
+                - recursive(0)
+                - done with recursive(0) execution
+            - done with recursive(1) execution
+        - done with recursive(2) execution
+    - done with recursive(3) execution
+- example:
+```Javascript
+function logRecursive(nr) {
+    console.log('started function:', nr);
+    if(nr > 0) {
+        logRecursive(nr - 1);
+    } else {
+        console.log('done with recursion');
+    }
+    console.log('ended function:', nr);
+}
+logRecursive(3);
+```
+- if a function needs to be called muliple time and a loop is needed - consider recursion instead
+- instead of looping over everything inside same function 
+    - example usage:
+        - search/ query
+    - split it up inside function
+        - call function repeatedly from inside
+    - performance slightly worse than a regular loop however
+    - if a bottleneck occurs consider another option/approach
+
+### practice exercise 6.6:
