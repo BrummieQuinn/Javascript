@@ -652,6 +652,11 @@ console.log('outside the function', x);
     - output as part of a string sentence
     - invoke and pass in desired value within rounded brackets
 
+* Planning:
+- just realised I didn't do any planning for the last one, but I didn't really struggle until the anonymous function bit.
+    - I misread anonymous as arrow function: have no idea why apart from the fact that I obviously need to read questions and tasks way more.
+    - if I had planned I'd probably have noticed and adjusted my approach
+
 ### recursive functions:
 - call the same function from inside the function
     - elegant solution to complex problems
@@ -699,3 +704,292 @@ logRecursive(3);
     - if a bottleneck occurs consider another option/approach
 
 ### practice exercise 6.6:
+- common problem that can be solved with recursion is calculating the factorial
+    - call function with a lower number until 0
+    - calculate factorial result of numeric value set as function argument
+
+1. create function
+    - has condition to check for argument value 0
+
+2. if parameter equal to 0
+    - return value of 1
+    - else return value of argument
+        - multiplied by value returned from function itself
+        - subtract 1 from value of argument provided
+        - block should run until value 0
+
+3. invoke function
+    - provide argument
+    - code should:
+        - run whatever number passed
+        - decrease all the way to 0
+        - output results of calculation to console
+        - function can contain console.log to print current value of argument in function as it executes
+
+4. change and update the number
+    - how does it affect results?
+
+* Planning:
+
+- the plan is to follow the steps carefully since misreading happens to me alot, which affects the approach I take.
+
+*NOTE:* I've never been good at coding challenges that have asked the same before, and thats without being so specific about the function used (in all honesty, I read the question, think I can do it(maybe), panic, confuse myself and get left thinking I will never learn Javascript)
+
+the fact that I've never stopped learning despite the confidence knocking set backs, the fact I haven't been searching the internet to help me complete the exercises because I'm so determined to be able to write code myself and the fact that when I hit a wall I'm willing to invest more time in the concepts that I feel haven't quite stuck, I feel is a testament to how much I love programming and how determined I am to become fluent in Javascript, so I can learn C#
+
+afterall, I'm learning Javascript now but its not my final goal. Being able to apply the concepts and fundamentals from this to C#, python or any other programming language that gets thrown at me is my true goal
+
+- factorial of a number:
+    - are a the product of all positive integers bigger than 0 up to the number itself
+    - factorial of seven: 7! = 7 * 6 * 5 * 4 * 3 * 2 * 1
+
+```Javascript
+// create function - 1 parameter
+function factorial(n) {
+    // create conditional
+    if (n === 0) {
+        return 1;
+    } else if (n > 0) {
+        console.log(n);
+        return  n * factorial(n - 1);
+    }
+    console.log(n);
+ }
+factorial(5);
+```
+- okay so I just realised that while I know how a factorial works in mathematics:
+    a. I need a refresher 
+    b. have no idea how to make it work in javascript
+- point is for the first time I'm having to look something up and I'm not feeling to great about that.
+- on the bright side the recursive part works with current argument of 5 I'm logging all positive numbers below it - so really I just need to know what a factorial looks like.
+- bit bummed but I don't know what I don't know, but I'll make sure I'll never forget it again if I find out
+> else return value of argument
+        - multiplied by value returned from function itself
+- I can't believe this is my obstacle!!!
+    - turns out if I'd console.log the function I would've been able to see if what I had been attempting worked.
+    - I did lookup factorial and started putting the parameter in different places one being in the return function (produced Infinity) but I knew that n needed to be multiplied by the returned factorial fuction. it turns out one of my previous tweaks had worked 'return n * factorial(n - 1) but I didn't know
+    - note to self when working with functions in the future, console.log the function call to see if its working or not!
+*NOTE:* I can't believe I figured it out! by myself too - apart from refreshing my memory on factorials notation in maths.
+
+once I did that it just became a matter of how to multiply n by the returned value of the function
+
+I also thought I'd put in all the console.logs I needed
+
+> function can contain console.log to print current value of argument in function as it executes
+
+I read this part but didn't fully take on board what it meant for me to do, but I'm actually glad to have come up with the idea to console.log the function call though.  I mean even if it was mentioned in the intructions, to have it occur to me separate from that makes me feel like I have more tools to work with now
+
+so even though the programs I write don't work first time (and why would they at this point or ever) I know that I can try various things to attempt to get the result I want
+
+### nested functions:
+- functions inside functions:
+- example:
+```Javascript
+function outerFunction(n) {
+    console.log('outer function');
+    // called before declaration using outerFunction parameter n
+    innerFunction(n);
+    // outerFunction argument is used to calculate innerFunction value
+    function innerFunction(x) {
+        console.log(x + 7);
+        console.log('can access outer varaiables', n);
+    }
+}
+outerFunction(2);
+// output: outer function
+// output: 9
+// can access outer variables 2
+```
+- outer function calls nested function
+    - nested function can access parent function variables
+    - parent function cannot access nested function variables - inner function scoped
+
+### practice exercise 6.7:
+- create countdown loop starting at a dynamic value of 10
+
+1. set start variable at value of 10
+
+2. create function
+    - one argument: countdown value
+
+3. within function
+    - output current value of countdown
+
+4. add condition
+    - check if value less than 1
+    - if less than 1 return function
+
+5. add condition
+     - if value not less than 1
+    - continue loop: call function recursively
+
+6. add decrement operator
+    - decrease value until 0
+
+7. update and create second countdown
+    - use condition to check value
+    - if greater than 0 decrease by 1
+
+8. use return
+    - return the function 
+    - should keep invoking until condition not true
+
+9. when new countdown value sent as function argument
+    - make sure there's a way out of loop 
+    - use return keyword
+    - condition that continues loop if met
+
+* Planning:
+```Javascript
+let start = 10
+
+function countdown(n) {
+    console.log(n);
+    if (n < 1) {
+        return countdown(n);
+    } else if (n > 1) {
+        return countdown(n - 1);
+    }
+}
+```
+
+- I'm thinking start should be the parameter in the function even though I've used n in my plan so I'll try that first and see where I am
+(29/08/2023)
+- so after using start I realised that wasn't right and rather than n, went with the more descriptive countdownValue.
+- I don't think I was ever going to be on the right track for this exercise.  I'm not sure if it's how the steps are laid out but I was only able to figure out the second countdown was supposed to be a second function 
+- it was this step that was very confusing to me and actually added as an extra condition to original function.
+- I also forgot to call the function with the start value variable at first before I remembered to add it to the first function call
+- step 4 I found unclear as I was returning the function but I just need to return the value of the function
+- step 5 and 6 I understood so that part didn't need to be changed.  I remembered from the factorial exercise that the countdownValue variable could be decremented when returning the function
+- once I saw the solution it was very clear what it did understand from the instructions and where I had misundertstood and I wondered about the vagueness from steps 7 - 9.
+>  Update and create a second countdown using a condition if the value is greater than 0. If it is, decrease the value of the countdown by 1
+- would I have gotten the solution eventually?  I don't know, since I've never attempted to do something like it before.  I genuinely thought I'd been making progress, but now I hit this wall and it's like what?
+- since its something new I've learned I'll try not to feel too disheartened and keep up the momentum I had before this
+
+### anonymous functions:
+- functions without names stored in variables
+- example:
+```Javascript
+// changing a named function to anonymous function:
+function anonymous() {
+    console.log('not so secret though');
+}
+// becomes:
+function () {
+    console.log('not so secret though');
+}
+// in order to invoke nameless functions:
+// store in a variable
+let functionVariable = function () {
+    console.log('not so secret though');
+}
+// call
+functionVariable();
+```
+- allows the passing of functions as parameters
+- known as callbacks
+
+### practice exercise 6.8:
+
+1. set a variable name and assign a function to it
+    - function expression with one parameter
+    - outputs a provided argument to console
+
+2. pass an argument into the function
+
+3. create the same function as a normal function declaration
+
+* Planning:
+- I think creating the function declaration first and modifying it might be the way to approach this one for me
+```Javascript
+// function declaration
+function output(parameter) {
+    console.log(parameter);
+}
+output(argument);
+// change to function expression
+let output = function (parameter) {
+    console.log(parameter);
+}
+output(argument)
+```
+
+### function callbacks:
+- passing a function as an argument to another function
+- example:
+```Javascript
+function doFlexibleStuff(executeStuff) {
+    executeStuff();
+    console.log('inside doFlexibleStuff');
+}
+// can call new function with an anonymous function
+doFlexibleStuff(functionVariable);
+// output: not so secret though (previous example output)
+// output: inside doFlexibleStuff
+
+// call with another anonymous function
+// create function expression
+let functionVariable2 = function () {
+    console.log('another anonymous function'); 
+}
+// call doFlexibleStuff function
+doFlexibleStuff(functionVariable2);
+// output: another anonymous function
+// output: inside doFlexibleStuff
+```
+- useful with asynchronous functions
+    - built-in Javascript functions such as setTimeout() and setInterval() show the usefulness of the concept of a function executing a function having been called itself 
+    - useful for managing asynchronus program execution
+- example:
+```Javascript
+let youGotThis = function () {
+    console.log('keep coding');
+};
+setTimeout(youGotThis, 1000);
+// after waiting 1000ms (1 second) will output:
+// 'keep coding'
+setInterval(youGotThis, 1000);
+// every 1000ms will output:
+// keep coding  (until program ended)
+```
+
+### chapter 6 projects:
+- create a recursive function:
+    - counts up to 10
+    - invoke with different start numbers as argument
+    - function should run until value greater than 10
+
+* Planning:
+- I'll have a quick look over my recursive function factiorial - if I manage this I'll be able to complete the same freecodecamp task
+
+```Javascript
+function recursiveFunction(n) {
+    if (n === 0) {
+        console.log(n);
+        return 1;
+    } else if (n < 10) {
+        console.log(n);
+        return recursiveFunction(n - 1);
+    }
+
+}
+```
+- It worked! and after I looked at it I realised the first condition wasn't even necessary so I removed it from the final solution.
+- once the numbers recursively counted down I realised it was working and changed n-1 to n+1 to count up instead
+
+- set timeout order:
+- using arrow format to create functions that output values one and two 
+- create a third function that outputs three and invokes first two functions
+- create a fourth function that outputs four
+    - use setTimeout() to invoke first function immediately and then the third function
+
+* Planning:
+- I didn't do any planning for this one as I actually had a pretty clear idea of what I needed to do to get to the solution
+- once I recognised three was a multiline arrow function I remembered to put the curly braces in an put each statement on a different line
+- I also remembered to call my functions this time to see them working in real time to make any adjustments
+- four wasn't as difficult as it first seemed, I did have to look up immediate invoking a setTimeout, I did however have a feeling it would be 0 or nothing - to make my code clear though I added 0
+- one interesting thing I noticed though,  is the fact that even though the timer is set to 0, three() was still invoked before one()
+
+### summary:
+
+

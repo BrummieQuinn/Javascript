@@ -247,3 +247,4 @@ return 'No such contact'
 
 - objects compared by identity - only true if value the same
     - an object with identical propertied would return false
+

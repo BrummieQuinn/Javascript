@@ -91,3 +91,101 @@ console.log(`result1: ${result1}`);
 })('3000');
 
 // practice exercise 6.6:
+// attempt 1:
+function factorial(n) {
+    if (n === 0) {
+        console.log(n);
+        return 1;
+    } else if (n > 0) {
+        
+    
+        console.log(n);
+        return n * factorial(n - 1);    
+    }
+    console.log(n);
+}
+
+console.log(factorial(10));
+console.log(factorial(5));
+console.log(factorial(15));
+
+// practice exercise 6.7:
+// create start variable - loop starting value
+let start = 10;
+// create first countdown function
+function countdown(countdownValue) {
+    // console.log output
+    console.log(countdownValue);
+    // create first condition
+    if (countdownValue < 1) {
+        // return the function  - step 4
+        return;
+    }
+    // return function including decrement by 1
+    return countdown(countdownValue - 1);
+}
+// call function using start variable - end of loop 1
+countdown(start);
+//// update and create second countdown - step 7
+function secondCountdown(countdownValue) {
+    console.log(countdownValue);
+    // create the condition
+    if (countdownValue > 0) {
+    //  decrement by 1  
+        countdownValue--;
+        // return the function to invoke
+        return secondCountdown(countdownValue);
+    }
+    // return to end loop 2
+    return;
+}
+// call second countdown with start variable
+secondCountdown(start);
+// interesting that despite the number given for the condition logs the same output
+
+// practice exercise 6.8:
+// function expression:
+let output = function (parameter) {
+    console.log(parameter);
+}
+output('hello');
+// function declaration:
+function output2(parameter) {
+    console.log(parameter);
+}
+output('hello 2');
+
+// chapter 6 projects:
+// create a recursive function:
+function countToTen(n) {
+    if (n < 10) {
+        console.log(n);
+        return countToTen(n + 1);
+    }
+    return;
+}
+countToTen(0);
+
+// set timeout order
+// create arrow functions and output values
+let one = () => console.log('one');
+let two = () => console.log('two');
+// create arrow function output value
+let three = () => {
+    console.log('three');
+    // invoke previously created arrow functions
+    one();
+    two();
+    
+
+};
+// create arrow function and output value
+let four = () => {
+    console.log('four');
+    // setTimeout() for one() for immediate invoke
+    setTimeout(one, 0);
+    // invoke three()
+    three();
+}
+// call four()
+four();
