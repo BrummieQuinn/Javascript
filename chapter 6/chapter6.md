@@ -654,8 +654,10 @@ console.log('outside the function', x);
 
 * Planning:
 - just realised I didn't do any planning for the last one, but I didn't really struggle until the anonymous function bit.
-    - I misread anonymous as arrow function: have no idea why apart from the fact that I obviously need to read questions and tasks way more.
+    - I misunderstood anonymous as arrow function: have no idea why apart from the fact that I obviously need to read questions and tasks way more.
     - if I had planned I'd probably have noticed and adjusted my approach
+(see chapter6.js)
+
 
 ### recursive functions:
 - call the same function from inside the function
@@ -780,6 +782,7 @@ I also thought I'd put in all the console.logs I needed
 I read this part but didn't fully take on board what it meant for me to do, but I'm actually glad to have come up with the idea to console.log the function call though.  I mean even if it was mentioned in the intructions, to have it occur to me separate from that makes me feel like I have more tools to work with now
 
 so even though the programs I write don't work first time (and why would they at this point or ever) I know that I can try various things to attempt to get the result I want
+(see chapter6.js)
 
 ### nested functions:
 - functions inside functions:
@@ -865,6 +868,7 @@ function countdown(n) {
 >  Update and create a second countdown using a condition if the value is greater than 0. If it is, decrease the value of the countdown by 1
 - would I have gotten the solution eventually?  I don't know, since I've never attempted to do something like it before.  I genuinely thought I'd been making progress, but now I hit this wall and it's like what?
 - since its something new I've learned I'll try not to feel too disheartened and keep up the momentum I had before this
+(see chapter6.js)
 
 ### anonymous functions:
 - functions without names stored in variables
@@ -989,7 +993,8 @@ function recursiveFunction(n) {
 - I also remembered to call my functions this time to see them working in real time to make any adjustments
 - four wasn't as difficult as it first seemed, I did have to look up immediate invoking a setTimeout, I did however have a feeling it would be 0 or nothing - to make my code clear though I added 0
 - one interesting thing I noticed though,  is the fact that even though the timer is set to 0, three() was still invoked before one()
+(see chapter6.js)
 
-### summary:
+
 
 
