@@ -1,12 +1,12 @@
 // working out calculator - display and buttons:
 const input = document.getElementById('input');
-// create variables to hold all clicked button values and pass to input to display:
 // variable to hold current number clicked value
 let currentValue = '';
 // variable to hold current operator clicked value
 let currentOperator = '';
 // variable to hold previous value when operator clicked
 let previousValue = input.value;
+// create variables to hold all clicked button values and pass to input to display:
 // results in nodelist, to access individual buttons use for of or forEach
 const buttons = document.querySelectorAll('.buttons');
 for (let button of buttons) {
