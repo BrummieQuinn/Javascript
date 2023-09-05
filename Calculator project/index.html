@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="Georgina Carrington">
+    <meta name="description" content="a functional calculator created with vanilla HTML, CSS and Javascript">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="">
+</head>
+<header>
+    <h1 class="title">Calculator</h1>
+    <p class="introduction">Welcome to my (currently a work in progress) calculator project</p>
+</header>
+<main class="calculator_container">
+    <form class="display_container">
+        
+        <label for="input">
+            calculation:
+        </label>
+        <input 
+        type="text" 
+        id="input" 
+        name="input" 
+        placeholder="enter calculation here"
+        readonly>
+        <!--assigned readonly so buttons must be used for user input  -->
+        <label for="output">
+           result:
+        </label>
+         <output 
+         id="output" 
+         name="output" 
+         value="0">0</output>
+
+    </form>
+    <section class="buttons_container">
+
+      <button id="nine" class="buttons" type="button" value="9">9</button>
+      <button id="eight" class="buttons" type="button" value="8">8</button>
+      <button id="seven" class="buttons" type="button" value="7">7</button>
+      <button id="six" class="buttons" type="button" value="6">6</button>
+      <button id="five" class="buttons" type="button" value="5">5</button>
+      <button id="four" class="buttons" type="button" value="4">4</button>
+      <button id="three" class="buttons" type="button" value="3">3</button>
+      <button id="two" class="buttons" type="button" value="2">2</button>
+      <button id="one" class="buttons" type="button" value="1">1</button>
+      <button id="zero" class="buttons" type="button" value="0">0</button>
+      <button id="add" class="buttons" type="button">+</button>
+      <button id="subtract" class="buttons" type="button">-</button>
+      <button id="divide" class="buttons" type="button">/</button>
+      <button id="multiply" class="buttons" type="button">*</button>
+      <button id="equals" class="buttons" type="button">=</button>
+      <button id="clear" class="buttons" type="reset">clear</button>
+
+    </section>
+</main>
+<body>
+    <script src="index.js" defer></script>
+    <noscript>If you're seeing this, your Javascript is disabled</noscript>
+</body>
+</html>
