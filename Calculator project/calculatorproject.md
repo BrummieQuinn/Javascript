@@ -63,7 +63,8 @@
 - the edge cases I will need to account for even with just basic addition in mind for my first goal.
 - During planning I've managed to come up with a few situtations so far that would need to have a solution for handling even though i'm only handling addition for now anything beyond that functionality would need to throw an error and alert the user that the functionality is not ready yet or I can disable the relevant buttons involved with these cases:
 
-~~ what happens if user inputs letters?~~ ~~ throw error 'not a valid input.~~ ~~please use numbers 0 - 9'~~ 
+~~what happens if user inputs letters?~~ 
+~~throw error 'not a valid input.~~ ~~please use numbers 0 - 9'~~ 
  
 - I've taken care of this by setting the input to readonly. only the buttons will be able to change the value
 
