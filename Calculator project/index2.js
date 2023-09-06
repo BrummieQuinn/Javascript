@@ -1,6 +1,8 @@
+// refactored from index1.js
 // calculator button input display
 // variable assignment to document elements
 const input = document.getElementById('input');
+let output = document.getElementById('output');
 const buttons = document.querySelectorAll('.buttons');
 
 //variables for calculator input
@@ -30,9 +32,6 @@ function numberClick(button) {
     previousValue = currentValue;
     // update input to reflect currentValue
     input.value = currentValue;
-    console.log(input.value);
-    console.log(currentValue);
-    console.log(previousValue);
   }
 }
 
@@ -49,9 +48,6 @@ function operatorClick(button) {
     previousValue = currentValue;
     currentValue += currentOperator;
     input.value = previousValue + currentOperator;
-    console.log(buttonOperators);
-    console.log(input.value);
-    console.log(previousValue);
   }
 }
 
@@ -63,8 +59,7 @@ function clearClick(button) {
     previousValue = '';
     currentOperator = '';
     input.value = currentValue;
-    console.log(buttonClear);
-    console.log(input.value);
+    output.value = currentValue;
   }
 }
 
@@ -72,7 +67,55 @@ function clearClick(button) {
 function equalClick(button) {
   let buttonEqual = button.target.innerHTML;
   if (buttonEqual === '=') {
+    
+    convertInput(currentValue);
     // calculate code to go here
+    // console checks
+    console.log(currentValue);
+    console.log(previousValue);
+    console.log(currentOperator);
     console.log(buttonEqual);
+    console.log(output.value);
   }
 }
+
+// function to handle calculations
+function calculate(number1,  number2, operator) {
+  if (currentOperator === '/') {
+    let result = number1 / number2;
+    console.log(result);
+    output.value = result;
+    return result;
+  
+  } else if (currentOperator === '-') {
+    let result = number1 - number2;
+    output.value = result;
+    console.log(result);
+    return result;
+  
+  } else if (currentOperator === '*') {
+    let result = number1 * number2;
+    output.value = result;
+    console.log(result);
+    return result;
+  
+  } else {
+    let result = number1 + number2;
+    output.value = result;
+    console.log(result);
+    return result;
+  }
+  
+}
+
+// function to convert calculation input into two numbers at the operator
+function convertInput(calculation) {
+  let inputArray = calculation.split(currentOperator);
+  let input1 = inputArray[0];
+  let input2 = inputArray[1];
+  input1 = parseInt(input1);
+  input2 = parseInt(input2);
+  calculate(input1, input2, currentOperator);
+  console.log(inputArray);
+}
+

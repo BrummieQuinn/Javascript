@@ -706,7 +706,18 @@ function calculate(number1, number2, operator) {
 }
 ```
   - to make sure I'm only focusing on one thing I'm going to start with addition and add the other basic arithmetic calculations as if / else-if statements as I go.
-
+  - I also need to make sure that when I pass the currentValue to the calculate function that I remember to parseInt and turn into an number data type or the calculate function will just concatenate the strings when added and every other operation will fail.
+- New approach needed for calculate function. checking both previousValue and currentValue makes it clear my calculate function needs me to create a conversion and parse function or possibly break that into two separate functions to give the calculate function the data it needs to work.
+- I  can't believe I forgot this part! But what I've discovered wasn't outside of the two possibilities I came up with to handle the input calculation and my approach just means I can figure out a way to use the full input to calculate the result. This means I can then leverage this function to take on multi-calculation input.
+- I'm currently passing my  calculate function one parameter of calculation, it's current behaviour logs and outputs the current calculation to the output element, so I've got that much working at least.  I now need to work out what string methods I want to use to take this argument and split it into 2 numbers and an operator I can eventually pass to a calculate function that takes 3 arguments
+- I'll use the currentValue I'm currently storing as an argument for a conversion function that will split the input at the operator and convert the numbers to integers using string methods.
+- We're adding numbers!!!!
+- After researching the split() method for strings on MDN I came to the conclusion I could split the input calculation using the currentOperator as the argument and assign it to a variable (inputArray).  Using the index positions I then assigned the individual strings to 2 variables and converted them to numbers with parseInt().
+- I then called the calculate function inside the convert function using the two input variables and the variable holding the currentOperator
+- the equalClick function calls the convert function for the current input.  It's probably a really inefficient way to do this but I'm proud of coming up with a solution at all.  I'm going to start adding the other basic operators now and see if it still works or breaks it.
+- If it breaks thats fine, it means it was a one time solution and I'll need to think of something else.  I'm actually looking forward to trying to take a more complex calculation and trying to parse the strings and operators to use in my calculate function. 
+- Before any of that I need to add the next operators and then  work on the edge cases I came up with earlier in the project that I'll need to handle
+- My calculator is now performing basic arithmetic, I still have edge cases to take care of but far from just basic addition I have the four basic arithmetic calculations done too!!
 
 
 
@@ -777,3 +788,4 @@ function calculate(number1, number2, operator) {
 - Now I've taken the time to reflect a bit, I feel a lot better going forward with this calculator project
 - Its really funny thinking that if I were to have built a form with a submit button and needing valued from various inputs I'd probably be done by now since I never had any issues before. Seeing how rusty I've gotten has shown that while learning what the programming fundamentals are hasn't done me any harm, writing statements in the syntax hasn't been too difficult, but targeting the html elements with those statements would've been a better process as pointed out by my mentor, I should've been pairing it with creating functions that interacted with html a lot more than I have. I'm just glad to have realised this now while trying to get this calculator to work using what I know
 - I'm so glad I decided to do this project, I mean how else would I have learned about looping through the element nodelist in an event listener would cause me to create events.  I guess it's true when you decide to build something you learn things an algorithm exercise or challenge can't.
+- I can't believe it! I've exceeded my goal for when I started this calculator project on the 2/09/2023.  The original objective was simple addition and as I continued to build I realised that that in itself was not a step but an actual goal to meet.  Breaking down that goal led me to understand the actual process of breaking something down into a smaller task.
