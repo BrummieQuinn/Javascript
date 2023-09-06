@@ -62,14 +62,22 @@
 
 - the edge cases I will need to account for even with just basic addition in mind for my first goal.
 - During planning I've managed to come up with a few situtations so far that would need to have a solution for handling even though i'm only handling addition for now anything beyond that functionality would need to throw an error and alert the user that the functionality is not ready yet or I can disable the relevant buttons involved with these cases:
- ~~ - what happens if user inputs letters? throw error 'not a valid input. please use numbers 0 - 9'~~ I've taken care of this by setting the input to readonly. only the buttons will be able to change the value
+
+ ~~ - what happens if user inputs letters? throw error 'not a valid input. please use numbers 0 - 9'~~ 
+ 
+ - I've taken care of this by setting the input to readonly. only the buttons will be able to change the value
+
   - what happens if user inputs decimal? (not possible without a decimal button being added anyway - input readonly) return floating point number <=== seems like complex functionality
+
   - what happens if user inputs a large number that requires BigInt? condition to cover BigInt number input? <=== seems like complex functionality
     - will need to throw an error and inform user number too big for now
+
   - what happens if a user attempts more than one calculation at a time? e.g. 7 + 5 - 9 \* 10 / 3
     - throw error and inform user that only simple calculations can be done for now
   - what happens if the user attempts to divide by 0?
+
   - what happens if user attempt to use double operators? 
+
     - only time this should happen eventually is for exponentials '**' <= future complex functionality
     - all other cases should throw error in which case I need to catch and deal with it 
 
@@ -216,7 +224,9 @@ for (let button of buttons) {
 - I'm also starting to see how it breaks down into each step:
   - I've created a variable to hold the input element - I also worked out I can use input.value to update the input element
   - I created a variable to hold the buttons - This gave me access to a node list I was able to use a for of loop with a condition that only the numbers between 0 - 9 would log
+
  ~~ - within the condition I added an event listener to these buttons and converted them to integers to pass to input.value~~
+
   - still thinking in terms of functions and modules and thereby constraining myself unconciously I decided I couldn't do that as only the individual numbers showed up and not every button pressed
 - I've decided I need to filter the buttons into catagories and deal with them with them based on that - another subconcious constraint discovered is minimising the number of event listeners I'm using, why would I hobble myself in the process of just getting a working solution.  Obviously I shouldn't have too many, but logically I should've thought about grouping common elements and working with them separately. 
 - Once I got the numbers logging to input with the previous code, I began to think about how I would work with the other buttons and thats when I realised I was on the right path for numbers.  But if I wanted to work with the other buttons I would need branches to handle them
@@ -447,6 +457,272 @@ function buttonInput (buttons) {
 ``` 
 - Can this function be split up further and should it? Would it be more reusable, easier to read or easier to maintain if I did?  That's what I'm thinking when I look at the buttonInput function I've created.  I don't expect to come up with a solution today, frankly, for me I got the input working sooner than I expected. Now I've written something, I have something to experiment with.  
 
+### Planning:
+(06/09/2023)
+- Today I'm continuing on from yesterday. That means creating reusable functions that will call the event listener when the button is clicked
+- My plan is to take yesterdays function plan and break it up:
+  - function 1: number buttons
+```Javascript
+function numberClick (button) {
+  if (button.innerHTML >= '0' && button.innerHTML <= '9') {
+        let buttonNumbers = button.innerHTML;
+        currentValue += buttonNumbers;
+        previousValue = currentValue; 
+        input.value = currentValue;
+        console.log(buttonNumbers);
+  }
+}
+```
+  - function 2: operator buttons
+```Javascript
+function operatorClick (button) {
+  if (button.innerHTML === '+' || button.innerHTML === '-' || button.innerHTML === '*' || button.innerHTML === '/') {
+        let buttonOperators = button.innerHTML;
+            console.log(buttonOperators);
+            currentOperator = buttonOperators;
+            previousValue = currentValue;
+            currentValue += currentOperator;
+            input.value = previousValue + currentOperator;
+            console.log(previousValue);
+        }
+
+}
+```
+  - I'm not to happy with the conditions for this one and believe a switch statement might actually better here, but as before the goal is getting it to work before further refinement of the code
+
+  - function 3: clear button
+```Javascript
+ function clearClick (button) {
+     let buttonClear = button.innerHTML
+     console.log(buttonClear);
+     currentValue = '';
+     input.value = currentValue;
+  }
+```
+
+  - function 4: equal button
+```Javascript
+function equalClick (button) {
+ 
+    let buttonEqual = button.innerHTML;
+    console.log(buttonEqual);
+    // function to calculate the input: to be created
+    calculate(previousValue,currentValue, currentOperator);
+  }
+```
+ - add event listener:
+ ```Javascript
+ const buttons = document.querySelectorAll('.buttons');
+ function buttonInput (buttons) {
+ for (let button of buttons) {
+  button.addEventListener ('click', () => {
+    numberClick(button);
+    operatorClick(button);
+    equalClick(button);
+    clearClick(button);
+
+  });
+ }
+ }
+ ```
+ - I've come up with this for the event listener but it still doesn't feel as good as it could be.  I absolutely can feel there's a more efficient way to call the buttons but for now this is all I've got.
+ - I know why this code for the event listener is bugging me, its calling all the buttons at the same time when one button is clicked. I don't think this is a good approach if I'm planning to do more than just calculate simple calculations, if I plan to add more complex calculations that deal with exponentials, floating point numbers etc.
+ - I'll keep thinking and experimenting for now.  After looking at my previous approaches I don't necessarily think I'm on the wrong path here the functions for the buttons are okay, my problem is deciding the approach for the event listeners
+ - function 1: number buttons
+```Javascript
+function numberClick (button) {
+  if (button.innerHTML >= '0' && button.innerHTML <= '9') {
+        let buttonNumbers = button.innerHTML;
+        currentValue += buttonNumbers;
+        previousValue = currentValue;
+        console.log(buttonNumbers);
+  }
+}
+```
+  - function 2: operator buttons
+```Javascript
+function operatorClick (button) {
+  if (button.innerHTML === '+' || button.innerHTML === '-' || button.innerHTML === '*' || button.innerHTML === '/') {
+        let buttonOperators = button.innerHTML;
+            console.log(buttonOperators);
+            currentOperator = buttonOperators;
+            previousValue = currentValue;
+            currentValue += currentOperator;
+            input.value = previousValue + currentOperator;
+            console.log(previousValue);
+        }
+
+}
+```
+- function 3: clear button
+```Javascript
+ function clearClick (button) {
+     let buttonClear = button.innerHTML
+     console.log(buttonClear);
+     currentValue = '';
+     input.value = currentValue;
+  }
+```
+
+  - function 4: equal button
+```Javascript
+function equalClick (button) {
+ 
+    let buttonEqual = button.innerHTML;
+    console.log(buttonEqual);
+    // function to calculate the input: to be created
+    calculate(previousValue,currentValue, currentOperator);
+  }
+```
+- I read up on event listeners some more and after looking through MDN which actually showed a for of for an imaginary situation with 100 buttons but the point is even before looking I had practically worked it out, I knew I was right to be bugged about the way I had been passing the functions to the event listener before, I had remembered that the target object of the event could be a parameter, I just hadn't been thinking about it in the right way before I used the for loop to attach the event listeners correctly but fell down by calling each button function each time.  The new way passes the button function to an event listener as its event target. So any new buttons I add like a new operator button or a memory button can be easily incorporated into the program now I've refactored it to be more easily readable and maintainable
+- event listeners:
+```Javascript
+const buttons = document.querySelectorAll('.buttons');
+for (let button of buttons) {
+    console.log(button);
+  button.addEventListener('click', numberClick);
+  button.addEventListener('click', operatorClick);
+  button.addEventListener('click', equalClick);
+  button.addEventListener('click', clearClick);
+
+
+}
+```
+- So turns out that the behaviour of the functions isn't as intended, the buttons log in the console as undefined and there is no update to the input element.  But I have a place to start, the clicks are registering but the statements for the original program aren't doing what they did outside of the functions.
+  - I need to fix the current behaviour of my functions so I can move onto creating a calculator function.  I just need to iterate what I already have and be prepared to scrap or salvage what I have on my way to a solution
+  - The only console.logs I'm receiving are for the equalClick function and clearClick function which are undefined.
+ - I need to now narrow my focus on getting just one function to work
+  - adding console.log to the clearClick function show empty for currentValue
+  - if I can get clearClick to log its button value I might get a hint to where I'm going wrong with the others
+  - the equalClick and clearClick are also fired when the numbers and operators are clicked this tells me I messed up with the logic
+- I've changed my mind and decided to work on the function for numbers.  I've commented out everything except the event listener for the number button function
+```Javascript
+const input = document.getElementById('input');
+console.log(input)
+const buttons = document.querySelectorAll('.buttons');
+console.log(buttons);
+
+//variables for calculator input
+let currentValue = '';
+console.log(currentValue)
+let currentOperator = '';
+console.log(currentOperator);
+let previousValue = input.value;
+console.log(previousValue);
+console.log(input.value);
+
+// add event listeners
+for (let button of buttons) {
+  console.log(button);
+  button.addEventListener('click', numberClick);
+  // button.addEventListener('click', operatorClick);
+  // button.addEventListener('click', equalClick);
+  // button.addEventListener('click', clearClick);
+}
+// function to handle number buttons
+function numberClick(button) {
+  let buttonNumbers = button.innerHTML;
+   console.log(buttonNumbers);
+  
+    currentValue += buttonNumbers;
+    previousValue = currentValue;
+    input.value = currentValue;
+   
+    console.log(previousValue);
+  
+}
+```
+- I removed the condition that was based on button.innerHTML as an experiment to see if the comparison was causing any of my issues and now it logs to the input and console, only problem is that it's logging undefined and not the button.innerHTML.  More experiments and investigations to be made on what I can do to get the original behaviour of logging the numbers that the buttons are holding as a string
+- so after console.log(button) in the numberClick function gave me the pointerEvent object when a button was clicked, I opened it up to see what methods were available and found its srcElement(I want to research this) and target with the button content.  This made me realise the for loop was creating an event object from the button clicked.
+- So I've been passing an event to a function and wondering why .innerHTML wasn't working or the conditions.  I was comparing an event object with a string datatype lol.  On the whole  I think I'm making some progress here, I'm understanding things way better than before.
+  - can I create a condition to compare the target and update the input for number buttons on this event call?
+  - I'll build this back better than before but I decided to get rid of everything in the function and focus on one thing at a time, gaining access to the buttons and registering the input is what needs to happen now
+- Progress at last!!!! I'm logging all buttons through the numberClick function, the idea to use button.target was a good one, however that literally logged the button object, looking into the target methods I found innerHTML and added it using (.) notation now I have something for my conditions to compare against.
+```Javascript
+// (06/09/2023) - cancelling out all functions except numbers to focus on a single thing without the other console.logs sending to dev tools console
+
+// calculator button input display
+// variable assignment to document elements
+
+const input = document.getElementById('input');
+console.log(input)
+const buttons = document.querySelectorAll('.buttons');
+
+//variables for calculator input
+let currentValue = '';
+console.log(currentValue)
+let currentOperator = '';
+console.log(currentOperator);
+let previousValue = input.value;
+console.log(previousValue);
+console.log(input.value);
+
+// add event listeners
+// creates an event object (button)
+for (let button of buttons) {
+  console.log(button);
+  button.addEventListener('click', numberClick);
+  // button.addEventListener('click', operatorClick);
+  // button.addEventListener('click', equalClick);
+  // button.addEventListener('click', clearClick);
+}
+// function to handle number buttons
+// pass event object created in for loop to function
+function numberClick(button) {
+  console.log(button);
+  // access event target to access element of button clicked
+  console.log(button.target);
+  let buttonNumbers = button.target.innerHTML;
+  currentValue += buttonNumbers;
+  previousValue = currentValue;
+  input.value = currentValue;
+  console.log(buttonNumbers);
+  console.log(input.value);
+  console.log(currentValue);
+  console.log(previousValue);  
+}
+```
+- I'm so glad I decided to work on the numberClick function over the clearClick function in the end.  It may even have been a bad idea full stop to have started there or it may have been quicker if I had.  Who knows but the point is I figured it out and I'm happy about that, even more I know why my functions were failing and I'll always know that using a for loop in this way returns something I should've realised but hadn't since I've never done this before
+- I also understand it was the console.log(button) inside the for loop of the event listener that made me forget that after that the event listener was updating it into something else
+- adding the condition back was as easy as before using the buttonNumber variable I created to compare the strings ensures only the number buttons are input when numberClick function is executed. Updating the other functions to give me back the previous functionality I had now should be a piece of cake now I know how to access the element values
+- All previous input functionality restored only this time I have functions for each button type when a button is clicked it fires the event and executes the code related to that button type.  If I want to add more buttons I just need to add them to the HTML and depending on what they do, give them a separate function or add it to the calculate function I will now write as my next goal.
+- I'm now at what I initially thought of at the start of this project as the first step. Giving my calculator basic addition functionality, I've had an idea for the whole calculate function for a while so I have a sort of rough sketch in my head
+```Javascript
+function calculate(number1, number2, operator) {
+  let result = 0;
+  if (operator === '/') {
+    result = number1 / number2;
+    return result;
+  } else if (operator === '-') {
+    result = number1 - number2
+    return result
+  } else if (operator === '*') {
+    result = number1 * number2
+    return result
+  } else {
+    result = number1 + number2
+    return number1 + number2
+  }
+}
+```
+  - to make sure I'm only focusing on one thing I'm going to start with addition and add the other basic arithmetic calculations as if / else-if statements as I go.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -495,3 +771,9 @@ function buttonInput (buttons) {
 -  I actually imagined a weeks long struggle to get even here and the speed I've managed to get the input working has surprised me.  So I'm going to stick to my guns on this one and will not be working on the calculation functionality until I can make my code less messy, currently its a bunch of statements calling the event listener, my next goal is to create reusable functions out of my current code with clear variables I can pass into the calculation function.
 - It's suggested everywhere to plan in psuedocode first don't worry about the syntax and it doesn't seem to help me anymore than writing out a bullet pointed list of what I want to do. I can't see it as helpful if I still have to find the appropriate syntax etc later on so thats why I plan using Javascript syntax instead of psuedocode currently.  As I get better, psuedocode may become a useful tool for me, as I am always open to changing my approach where necessary
 - Another thought which is obvious but also an insight for me is, write something, anything, either in a planning file or a Javascript file.  Write down any code your brain might come up with during the time away from the computer, it might lead to a dead end, it might lead to the behaviour you want.  Point is without a single word you can't write a sentence and without writing down statements you can't know if you've stumbled across your next solution or your next dead end.
+
+(06/09/2023)
+- I need to remember this project is not beyond me, I've spent roughly 2 months manipulating html elements with Javascript with no problem. This is just a case of me having taking a break to learn strengthening my understanding of Javascript without applying them sooner.
+- Now I've taken the time to reflect a bit, I feel a lot better going forward with this calculator project
+- Its really funny thinking that if I were to have built a form with a submit button and needing valued from various inputs I'd probably be done by now since I never had any issues before. Seeing how rusty I've gotten has shown that while learning what the programming fundamentals are hasn't done me any harm, writing statements in the syntax hasn't been too difficult, but targeting the html elements with those statements would've been a better process as pointed out by my mentor, I should've been pairing it with creating functions that interacted with html a lot more than I have. I'm just glad to have realised this now while trying to get this calculator to work using what I know
+- I'm so glad I decided to do this project, I mean how else would I have learned about looping through the element nodelist in an event listener would cause me to create events.  I guess it's true when you decide to build something you learn things an algorithm exercise or challenge can't.

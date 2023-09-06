@@ -1,4 +1,4 @@
-// working out calculator - display and buttons:
+// working out calculator - input display and button input: a program of statements
 const input = document.getElementById('input');
 // variable to hold current number clicked value
 let currentValue = '';
@@ -18,6 +18,7 @@ for (let button of buttons) {
             input.value = currentValue;
             previousValue = currentValue
             console.log(buttonNumbers);
+            console.log(previousValue);
             
         })
     } else if (button.innerHTML === '=') {
@@ -45,4 +46,4 @@ for (let button of buttons) {
     }
    
 }
-
+//This code is the first iteration for creating the calculator button input display 
