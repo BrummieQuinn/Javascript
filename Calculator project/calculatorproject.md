@@ -63,7 +63,7 @@
 - the edge cases I will need to account for even with just basic addition in mind for my first goal.
 - During planning I've managed to come up with a few situtations so far that would need to have a solution for handling even though i'm only handling addition for now anything beyond that functionality would need to throw an error and alert the user that the functionality is not ready yet or I can disable the relevant buttons involved with these cases:
 
-~~ - what happens if user inputs letters? throw error 'not a valid input. please use numbers 0 - 9'~~ 
+~~ what happens if user inputs letters? throw error 'not a valid input. please use numbers 0 - 9'~~ 
  
 - I've taken care of this by setting the input to readonly. only the buttons will be able to change the value
 
@@ -226,7 +226,7 @@ for (let button of buttons) {
   - I've created a variable to hold the input element - I also worked out I can use input.value to update the input element
   - I created a variable to hold the buttons - This gave me access to a node list I was able to use a for of loop with a condition that only the numbers between 0 - 9 would log
 
-~~ - within the condition I added an event listener to these buttons and converted them to integers to pass to input.value~~
+~~ within the condition I added an event listener to these buttons and converted them to integers to pass to input.value~~
 
   - still thinking in terms of functions and modules and thereby constraining myself unconciously I decided I couldn't do that as only the individual numbers showed up and not every button pressed
 - I've decided I need to filter the buttons into catagories and deal with them with them based on that - another subconcious constraint discovered is minimising the number of event listeners I'm using, why would I hobble myself in the process of just getting a working solution.  Obviously I shouldn't have too many, but logically I should've thought about grouping common elements and working with them separately. 
