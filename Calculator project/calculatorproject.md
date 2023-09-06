@@ -65,20 +65,21 @@
 
  ~~ - what happens if user inputs letters? throw error 'not a valid input. please use numbers 0 - 9'~~ 
  
- - I've taken care of this by setting the input to readonly. only the buttons will be able to change the value
+- I've taken care of this by setting the input to readonly. only the buttons will be able to change the value
 
-  - what happens if user inputs decimal? (not possible without a decimal button being added anyway - input readonly) return floating point number <=== seems like complex functionality
+- what happens if user inputs decimal? (not possible without a decimal button being added anyway - input readonly) return floating point number <=== seems like complex functionality
 
-  - what happens if user inputs a large number that requires BigInt? condition to cover BigInt number input? <=== seems like complex functionality
+- what happens if user inputs a large number that requires BigInt? condition to cover BigInt number input? <=== seems like complex functionality
     - will need to throw an error and inform user number too big for now
 
-  - what happens if a user attempts more than one calculation at a time? e.g. 7 + 5 - 9 \* 10 / 3
+- what happens if a user attempts more than one calculation at a time? e.g. 7 + 5 - 9 \* 10 / 3
     - throw error and inform user that only simple calculations can be done for now
-  - what happens if the user attempts to divide by 0?
 
-  - what happens if user attempt to use double operators? 
+- what happens if the user attempts to divide by 0?
 
-    - only time this should happen eventually is for exponentials '**' <= future complex functionality
+- what happens if user attempt to use double operators? 
+
+  - only time this should happen eventually is for exponentials '**' <= future complex functionality
     - all other cases should throw error in which case I need to catch and deal with it 
 
 
@@ -225,7 +226,7 @@ for (let button of buttons) {
   - I've created a variable to hold the input element - I also worked out I can use input.value to update the input element
   - I created a variable to hold the buttons - This gave me access to a node list I was able to use a for of loop with a condition that only the numbers between 0 - 9 would log
 
- ~~ - within the condition I added an event listener to these buttons and converted them to integers to pass to input.value~~
+~~ - within the condition I added an event listener to these buttons and converted them to integers to pass to input.value~~
 
   - still thinking in terms of functions and modules and thereby constraining myself unconciously I decided I couldn't do that as only the individual numbers showed up and not every button pressed
 - I've decided I need to filter the buttons into catagories and deal with them with them based on that - another subconcious constraint discovered is minimising the number of event listeners I'm using, why would I hobble myself in the process of just getting a working solution.  Obviously I shouldn't have too many, but logically I should've thought about grouping common elements and working with them separately. 
@@ -718,6 +719,8 @@ function calculate(number1, number2, operator) {
 - If it breaks thats fine, it means it was a one time solution and I'll need to think of something else.  I'm actually looking forward to trying to take a more complex calculation and trying to parse the strings and operators to use in my calculate function. 
 - Before any of that I need to add the next operators and then  work on the edge cases I came up with earlier in the project that I'll need to handle
 - My calculator is now performing basic arithmetic, I still have edge cases to take care of but far from just basic addition I have the four basic arithmetic calculations done too!!
+- currently division by 0 logs a result of infinity. I believe I need to return a BigInt data type to handle this case
+- I need to handle what happens when 2 operators are entered with an exception for ** exponentials
 
 
 
