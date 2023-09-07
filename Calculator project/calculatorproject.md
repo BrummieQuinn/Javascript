@@ -592,7 +592,7 @@ for (let button of buttons) {
 }
 ```
 - So turns out that the behaviour of the functions isn't as intended, the buttons log in the console as undefined and there is no update to the input element.  But I have a place to start, the clicks are registering but the statements for the original program aren't doing what they did outside of the functions.
-  - I need to fix the current behaviour of my functions so I can move onto creating a calculator function.  I just need to iterate what I already have and be prepared to scrap or salvage what I have on my way to a solution
+  - I need to fix the current behaviour of my functions so I can move onto creating a calculate function.  I just need to iterate what I already have and be prepared to scrap or salvage what I have on my way to a solution
   - The only console.logs I'm receiving are for the equalClick function and clearClick function which are undefined.
  - I need to now narrow my focus on getting just one function to work
   - adding console.log to the clearClick function show empty for currentValue
@@ -724,73 +724,101 @@ function calculate(number1, number2, operator) {
 - currently division by 0 logs a result of infinity. I believe I need to return a BigInt data type to handle this case
 - I need to handle what happens when 2 operators are entered with an exception for ** exponentials
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#### Thoughts of the day:
-- I created this part as I've found myself making observations that aren't really appropriate for the planning area of this document, but I still want to record them for future me or anyone else.
-
-(02/09/2023)
-- I'm not the most confident person in the world, but I've decided that if I don't start to build something now I never will. I decided on a calculator because it requires user input, so I have to use html and css. It also requires Javascript logic to handle the inputs and outputs required for user interaction as well as the calculations.
-- This project will not rely on any tutorials and will be built entirely from HTML, vanilla CSS and vanilla Javascript. I will limit myself to my programming books and MDN if I need to look something up. I'm aware there are plenty of tutorials out there, but if I just copy forever what will I really learn if somebody already puzzled out the hardest bits
-- I've decided to start slow, I've always put myself off doing something like this because the final result is usually all singing, all dancing in my head and I usually lose confidence thinking about all the steps involved and my impression of what I think I'm capable of, but not this time.
-
-(03/09/2023)
-- I don't need functions (just yet), I need to write the code, statement by statement and stop trying to run/walk before I can crawl. I can create this calculator, it's not an impossible task, I've just got to do it with what I know/remember or think of, even if it means baby steps.
-- Once I realised this I stopped trying to create functions and I forced myself to think in terms of what I wanted to happen and write each statement that leads up to that point and worry about breaking it down into functions later.  Without statements I have no functions
-
-(04/09/2023)
-- I have created a working calculator in the past by following a tutorial at https://www.freecodecamp.org/news/how-to-build-an-html-calculator-app-from-scratch-using-javascript-4454b8714b98/, however while I can do the html and css, I'm not able to reproduce its functionality as easily. This is despite understanding on a theoretical level what is going on in the code
-- This frustration is what led me to choose this project of building a calculator.  I can build a function for an exercise that can find the hypotenuese when I was asked for statements. I can build a recursive factorial function when the exercise asks and have even built a basic calculate function that took three parameters a, b and operator so technically I have the knowledge to do this, but not being able to write what I know is frustrating and knocking my confidence.
-
-- Sleeping on a problem always seems to work for me when I'm struggling with a problem or stuck on something logic based, and this isn't any different.
-- last night while reading my webtoon I could feel myself still working through what I had already accomplished and what I still needed to do.
-- I can feel that I'm on the right track and building statements as building blocks is helping me focus on getting one thing to work and seeing how I can add to it to make it do that and the next thing. My approach has changed drastically from I need to create functions to do x, y and z which is funny when I need to know what statements to give the functions first.
-- I deleted everything this morning and decided to start again based on what I'd learned. The bonus of having puzzled the code out myself is that deleting it isn't so daunting when you know how to write it again if necessary.
-- so going back to my goal and using what I've figured out, things that I knew and had read about and even done exercises etc about before.  It feels like I never really knew what I was doing at all.
-
-- I can't believe I managed to work it out up to here, while simple for some, I feel amazing!  
-- Translating what you know in your head into executable code I've found to be terribly frustrating and difficult. I've decided that while following tutorials can be helpful, your hand is held the whole time, you know why the functions work on a theoretical level but to then go off and try again on your own from scratch months later without even looking at it for reference is difficult.  You think your absorbing everything and can answer all the questions, but at this point turning what I know into something workable is dreadfully difficult.  But every step I make on this project, is a step carved into my mind including the things that don't work.
-- I've also managed to identify things that I keep doing that slows me down:
-  - I originally think of the project as build a calculator and start thinking functions.  It's not a major problem since functions will be a step I need to complete, but for a beginner like me, I should actually start with a smaller concept
-  - I was on the right track by readjusting my thinking to a single small goal of addition.  However I was overambitious again in my goal and attempted to do too much in one go.
-  - Yesterday I decided to scale the goal back even further to just console.log(buttonValue) and as I made progress on this I realised, this is an actual step. Broken down from Calculator => simple addition function => log button value to console with event listener
-  - Building on this I realised everything had to happen within the eventlistener since all the variables created were scoped to that method (as should be). 
-
-- Once again trying to do too much at once. Once again I'm reminded how much further I need to break this project down.
-- Starting again is getting easier I'm not gonna lie, once I realise the direction is right or wrong, stopping to think about what I've done so far and what I need to do next usually quickly lets me know if I should continue that path or scrap and start again.  
-
-(05/09/2023)
-- I can't believe the progress I've made so far, people told me I could code and I was like yeah with a searchbar I can do anything, but if I had to do it from scratch without easy access to other people's hardwork, could I?  I know this isn't the hardest project to tackle in the grandscheme of things, but if nothing else I've given myself a much needed boost in confidence.  
-- I started with a blank html, js and md file and an idea.  So far I've  built the structure of a calculator interface with an input and output for result of calculation, I've added the  buttons which I decided to style after the interactivity and calculator functionality had been accomplished.  
-- I  started the Javascript 3.09.2023 so its taken me less than three days to get to this point without using tutorials or code snippets from ai or stackoverflow.  Just my own thoughts and ideas, MDN and 4 books on Javascript I have access to for reference.
-- A few times I thought about asking for help, and I had to resist the temptation of looking for direct answers from a tutorials etc which led me to identify my problem number 3:
-  - I have no deadline for this project, I started on a whim after completing the freecodecamp.org basic Javascipt part of their course about to move onto the ES6 course to get a deeper look at the fundamentals of Javascript, I have also recently completed a 3 month web development bootcamp (which gave me insights into what I was lacking in terms of web development skills - hello Javascript) and I have been in the process of completing exercises from the book Javascript beginner to professional (I'm at chapter 7: classes).  I have been tentatively attempting to complete hackerrank and codewars problems.  I don't have actual problems writing the code so much as deciphering the questions themselves which really knocks my confidence.
-  - But basically I have no timeline for this project but the one I set myself.  I don't need to finish by a certain time, I just have to meet my own goals - which I have
-  - I had shared what I've been doing since bootcamp, with a mentor from the bootcamp, when she suggested adding css and html to one of the exercises which made me think about what I was doing - why was I trying to get a deeper understanding of Javascript in the first place?  I knew it was the area I identified as my weakness and something I needed to focus on understanding but it was ultimately to create things on the web and if I could do other things with it all the better but it was also a stepping stone into higher level languages like C#.  Ultimately until I tested myself by building something without a guide from ai or a tutorial to hold my hand, I have no idea what I can and can't do
--  I actually imagined a weeks long struggle to get even here and the speed I've managed to get the input working has surprised me.  So I'm going to stick to my guns on this one and will not be working on the calculation functionality until I can make my code less messy, currently its a bunch of statements calling the event listener, my next goal is to create reusable functions out of my current code with clear variables I can pass into the calculation function.
-- It's suggested everywhere to plan in psuedocode first don't worry about the syntax and it doesn't seem to help me anymore than writing out a bullet pointed list of what I want to do. I can't see it as helpful if I still have to find the appropriate syntax etc later on so thats why I plan using Javascript syntax instead of psuedocode currently.  As I get better, psuedocode may become a useful tool for me, as I am always open to changing my approach where necessary
-- Another thought which is obvious but also an insight for me is, write something, anything, either in a planning file or a Javascript file.  Write down any code your brain might come up with during the time away from the computer, it might lead to a dead end, it might lead to the behaviour you want.  Point is without a single word you can't write a sentence and without writing down statements you can't know if you've stumbled across your next solution or your next dead end.
-
-(06/09/2023)
-- I need to remember this project is not beyond me, I've spent roughly 2 months manipulating html elements with Javascript with no problem. This is just a case of me having taking a break to learn strengthening my understanding of Javascript without applying them sooner.
-- Now I've taken the time to reflect a bit, I feel a lot better going forward with this calculator project
-- Its really funny thinking that if I were to have built a form with a submit button and needing valued from various inputs I'd probably be done by now since I never had any issues before. Seeing how rusty I've gotten has shown that while learning what the programming fundamentals are hasn't done me any harm, writing statements in the syntax hasn't been too difficult, but targeting the html elements with those statements would've been a better process as pointed out by my mentor, I should've been pairing it with creating functions that interacted with html a lot more than I have. I'm just glad to have realised this now while trying to get this calculator to work using what I know
-- I'm so glad I decided to do this project, I mean how else would I have learned about looping through the element nodelist in an event listener would cause me to create events.  I guess it's true when you decide to build something you learn things an algorithm exercise or challenge can't.
-- I can't believe it! I've exceeded my goal for when I started this calculator project on the 2/09/2023.  The original objective was simple addition and as I continued to build I realised that that in itself was not a step but an actual goal to meet.  Breaking down that goal led me to understand the actual process of breaking something down into a smaller task.
+### Planning:
+(07/09/2023)
+- Today I'm going to be experimenting with my calculator to see what exceptions I can create and work out solutions for them
+- Current calculator behaviour:
+  - Division by 0 = infinity:
+    - currently looking at MDN it seems there's a way to represent infinity in its integer form.  If I can add a condition to the division branch result that if equal to infinity it will return result(Number.MAX_VALUE)
+    - another idea is doing something in my convertInput function as I'm currently using parseInt() but something else may be able to give me the integer value for Infinty.
+    - I've looked into it some more and apparently for a simple calculator a result of Infinity is fine, so it may not be the most pressing edge case to address
+  - Trying to input a calculation beyond the current convert function ability e.g 12 + 20 - 3 = ['12+20','3']:
+    - Possible thoughts on this would be to add another split on the input array and possibly create another global variable like previousOperator to split by if necessary
+  - Trying to input with double operators e.g 1++2 = NaN with an array that looks like this ['1', '', '2'] this is also true for **:
+     - I need to find a way to deal with throwing an error for invalid input (I've been looking forward to working with the error object, since covering it in my javascript practice)
+     - the error can be set to show for user either in the output element or the input element
+     - the exponential then would need to be an exception or a calculation function added to the calculator.  In this case, looking at the edge cases has led me to another conclusion
+- I've now been looking at the function that calculates and I'm wondering how I can make it better.  I was able to encapsulate the code for the button types when I refactored it and that too originally started as a large group of if else statements inside a function before I broke it down into functions associated with type.
+- The main issue is that as it stands adding any more branches would increase the function complexity and thats the wrong direction.  If I break up my calculate function into separate functions I can add conditions for the edge cases without putting it all in one function.
+- So for my next two goals I have decided to focus on the following:
+  - Calculations:
+    - function 1: add
+    - function 2: subtract
+    - function 3: divide - handle division by 0 with
+                           condition either throw error or try to find a way to display Infinity as an integer
+    - function 4: multiply
+    - function 5: exponential - adding exponential 
+                                capabilitywould also allow me to handle the error when double operators are entered into the input
+- Convert:
+  - The function itself is fine for now, however, I think if I'm going to handle multiple calculation inputs:
+    - I might try to split the inputArray created by initial split and see if I can get it to split at the operator again.  
+    - I would like to do that without creating and using another global variable if possible to keep my code as clean as possible
+- My calculate function looks like this:
+```Javascript
+// function to handle calculations
+function calculate(number1,  number2, operator) {
+  if (currentOperator === '/') {
+    // add condition for division by 0?
+    let result = number1 / number2;
+    console.log(result);
+    output.value = result;
+    return result; 
+  
+  } else if (currentOperator === '-') {
+    let result = number1 - number2;
+    output.value = result;
+    console.log(result);
+    return result;
+  
+  } else if (currentOperator === '*') {
+    let result = number1 * number2;
+    output.value = result;
+    console.log(result);
+    return result;
+  
+  } else {
+    let result = number1 + number2;
+    output.value = result;
+    console.log(result);
+    return result;
+  }
+  
+}
+```
+- The other thing I want to hope to avoid is repetition and causing redundant code.
+- I'll start with breaking up the function by calculation type:
+  - function 1: add
+```Javascript
+function add(number1, number2, operator) {
+  let resultAdd  = number1 + number2;
+  output.value = resultAdd;
+  return resultAdd;
+}
+```
+  - function 2: subtract
+```Javascript
+function subtract(number1, number2, operator) {
+  let resultSubtract = number1 - number2;
+  output.value = resultSubtract;
+  return resultSubtract;
+}
+```
+  - function 3: multiply
+  - add condition for exponential
+```Javascript
+function multiply(number1, number2, operator) {
+  let resultMultiply = number1 * number2;
+  output.value = resultMultiply;
+  return resultMultiply;
+}
+```
+  - function 4: divide
+  - add condition for division by 0
+```Javascript
+function divide(number1, number2, operator) {
+  let resultDivide = number1 / number2;
+  output.value = resutltDivide;
+  return resultDivide;
+}
+```
+- I'm not sure about giving addition and subtraction a condition to deal with double operators, I'm wondering if I can throw an error elsewhere.  I've been looking at my code and wondering the best place to warn the user of invalid input and my equalClick function which already uses an if statement could be adjusted to include an else if for the double operators that are not **

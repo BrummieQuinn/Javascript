@@ -69,7 +69,6 @@ function equalClick(button) {
   if (buttonEqual === '=') {
     
     convertInput(currentValue);
-    // calculate code to go here
     // console checks
     console.log(currentValue);
     console.log(previousValue);
@@ -82,10 +81,11 @@ function equalClick(button) {
 // function to handle calculations
 function calculate(number1,  number2, operator) {
   if (currentOperator === '/') {
+    // add condition for division by 0?
     let result = number1 / number2;
     console.log(result);
     output.value = result;
-    return result;
+    return result; 
   
   } else if (currentOperator === '-') {
     let result = number1 - number2;
