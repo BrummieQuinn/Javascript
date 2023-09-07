@@ -1,4 +1,4 @@
-// refactored from index1.js
+// refactored from index2.js
 // calculator button input display
 // variable assignment to document elements
 const input = document.getElementById('input');
@@ -67,45 +67,52 @@ function clearClick(button) {
 function equalClick(button) {
   let buttonEqual = button.target.innerHTML;
   if (buttonEqual === '=') {
-    
     convertInput(currentValue);
     // console checks
-    console.log(currentValue);
-    console.log(previousValue);
-    console.log(currentOperator);
-    console.log(buttonEqual);
-    console.log(output.value);
+    // console.log(currentValue);
+    // console.log(previousValue);
+    // console.log(currentOperator);
+    // console.log(buttonEqual);
+    // console.log(output.value);
+
   }
 }
 
-// function to handle calculations
-function calculate(number1,  number2, operator) {
-  if (currentOperator === '/') {
-    // add condition for division by 0?
-    let result = number1 / number2;
-    console.log(result);
-    output.value = result;
-    return result; 
-  
-  } else if (currentOperator === '-') {
-    let result = number1 - number2;
-    output.value = result;
-    console.log(result);
-    return result;
-  
-  } else if (currentOperator === '*') {
-    let result = number1 * number2;
-    output.value = result;
-    console.log(result);
-    return result;
-  
-  } else {
-    let result = number1 + number2;
-    output.value = result;
-    console.log(result);
-    return result;
+// functions to handle calculations
+function add(number1, number2, currentOperator) {
+  if (currentOperator === '+') {
+    let resultAdd = number1 + number2;
+    output.value = resultAdd;
+    console.log(resultAdd);
+    return resultAdd;
   }
-  
+}
+
+function subtract(number1, number2, currentOperator) {
+  if (currentOperator === '-') {
+    let resultSubtract = number1 - number2;
+    output.value = resultSubtract;
+    console.log(resultSubtract);
+    return resultSubtract;
+  }
+}
+
+function multiply(number1, number2, currentOperator) {
+  if (currentOperator === '*') {
+    let resultMultiply = number1 * number2;
+    output.value = resultMultiply;
+    console.log(resultMultiply);
+    return resultMultiply;
+  }
+}
+
+function divide(number1, number2, currentOperator) {
+  if (currentOperator === '/') {
+    let resultDivide = number1 / number2;
+    output.value = resultDivide;
+    console.log(resultDivide);
+    return resultDivide;
+  }
 }
 
 // function to convert calculation input into two numbers at the operator
@@ -115,9 +122,10 @@ function convertInput(calculation) {
   let input2 = inputArray[1];
   input1 = parseInt(input1);
   input2 = parseInt(input2);
-  calculate(input1, input2, currentOperator);
+
+  add(input1, input2, currentOperator);
+  subtract(input1, input2, currentOperator);
+  multiply(input1, input2, currentOperator);
+  divide(input1, input2, currentOperator);
   console.log(inputArray);
 }
-
-//This code is the second iteration for creating the calculator button input and display and the first interation of the calculate and convertInput functions
-

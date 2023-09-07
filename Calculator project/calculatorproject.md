@@ -422,6 +422,7 @@ for (let button of buttons) {
        }
     
 }
+// index1.js
 ```
 - The only problem I have, and I'm not sure if this will be an issue going forward, is that previousValue will not be able to hold the next operator clicked unless another number chosen after that in which case that next number will also be missing.
 - I'm not sure how this will affect my ablility to calculate the string going forwards but now I have met my goal of logging all input I now need to work out how I'm going to convert the string numbers to numbers to be passed to the calculate function I need to write.
@@ -684,6 +685,7 @@ function numberClick(button) {
   console.log(currentValue);
   console.log(previousValue);  
 }
+// index2.js
 ```
 - I'm so glad I decided to work on the numberClick function over the clearClick function in the end.  It may even have been a bad idea full stop to have started there or it may have been quicker if I had.  Who knows but the point is I figured it out and I'm happy about that, even more I know why my functions were failing and I'll always know that using a for loop in this way returns something I should've realised but hadn't since I've never done this before
 - I also understand it was the console.log(button) inside the for loop of the event listener that made me forget that after that the event listener was updating it into something else
@@ -822,3 +824,170 @@ function divide(number1, number2, operator) {
 }
 ```
 - I'm not sure about giving addition and subtraction a condition to deal with double operators, I'm wondering if I can throw an error elsewhere.  I've been looking at my code and wondering the best place to warn the user of invalid input and my equalClick function which already uses an if statement could be adjusted to include an else if for the double operators that are not **
+```Javascript
+// function to handle equals button
+function equalClick(button) {
+  let buttonEqual = button.target.innerHTML;
+  if (buttonEqual === '=') {
+    
+    convertInput(currentValue);
+    // console checks
+    console.log(currentValue);
+    console.log(previousValue);
+    console.log(currentOperator);
+    console.log(buttonEqual);
+    console.log(output.value);
+  }
+}
+```
+- It's not enough to just add the condions to these functions, I want to try to do it in an efficient or clean way which may include using switch instead of if else
+
+- I've broken my calculate function into individual calculations that can handle any edge cases related to them without creating a complex function.  Now I'll test it and try to see if I've broken the behaviour again or if it will continue behaving the way it did before I broke it up.
+
+- The individual functions work! I've added each function to convertInput currently, I'm not sure if thats best practice so I'll read up on it and see if I need to refactor it into something cleaner.
+- The calculator code now looks like this:
+```Javascript
+// refactored from index2.js
+// calculator button input display
+// variable assignment to document elements
+const input = document.getElementById('input');
+let output = document.getElementById('output');
+const buttons = document.querySelectorAll('.buttons');
+
+//variables for calculator input
+let currentValue = '';
+let currentOperator = '';
+let previousValue = input.value;
+
+// add event listeners to buttons using for of loop
+// creates an event object (button)
+for (let button of buttons) {
+  button.addEventListener('click', numberClick);
+  button.addEventListener('click', operatorClick);
+  button.addEventListener('click', equalClick);
+  button.addEventListener('click', clearClick);
+}
+
+// function to handle number buttons
+// pass event object created in for loop to function
+function numberClick(button) {
+  // assign element innerHTML to variable through event.target.innerHTML
+  let buttonNumbers = button.target.innerHTML;
+  // add condition for numbers
+  if (buttonNumbers >= '0' && buttonNumbers <= '9') {
+    // currentValue: add and assign button content
+    currentValue += buttonNumbers;
+    // previousValue: assign currentValue
+    previousValue = currentValue;
+    // update input to reflect currentValue
+    input.value = currentValue;
+  }
+}
+
+// function to handle operator buttons
+function operatorClick(button) {
+  let buttonOperators = button.target.innerHTML;
+  if (
+    buttonOperators === '+' ||
+    buttonOperators === '-' ||
+    buttonOperators === '*' ||
+    buttonOperators === '/'
+  ) {
+    currentOperator = buttonOperators;
+    previousValue = currentValue;
+    currentValue += currentOperator;
+    input.value = previousValue + currentOperator;
+  }
+}
+
+// function to handle clear button
+function clearClick(button) {
+  let buttonClear = button.target.innerHTML;
+  if (buttonClear === 'clear') {
+    currentValue = '';
+    previousValue = '';
+    currentOperator = '';
+    input.value = currentValue;
+    output.value = currentValue;
+  }
+}
+
+// function to handle equals button
+function equalClick(button) {
+  let buttonEqual = button.target.innerHTML;
+  if (buttonEqual === '=') {
+    convertInput(currentValue);
+    // handle returned object from convertInput here
+    // use a for in loop to access properties
+    for(let input in inputs) {
+      console.log(input.input1, input.input2);
+    } if (current Operator === '+') {
+      add(input.input1, input.input2);
+    }
+    // console checks
+    // console.log(currentValue);
+    // console.log(previousValue);
+    // console.log(currentOperator);
+    // console.log(buttonEqual);
+    // console.log(output.value);
+  }
+}
+
+// functions to handle calculations
+function add(number1, number2, operator) {
+  if (currentOperator === '+') {
+    let resultAdd = number1 + number2;
+    output.value = resultAdd;
+    console.log(resultAdd);
+    return resultAdd;
+  }
+}
+
+function subtract(number1, number2, operator) {
+  if (currentOperator === '-') {
+    let resultSubtract = number1 - number2;
+    output.value = resultSubtract;
+    console.log(resultSubtract);
+    return resultSubtract;
+  }
+}
+
+function multiply(number1, number2, operator) {
+  if (currentOperator === '*') {
+    let resultMultiply = number1 * number2;
+    output.value = resultMultiply;
+    console.log(resultMultiply);
+    return resultMultiply;
+  }
+}
+
+function divide(number1, number2, operator) {
+  if (currentOperator === '/') {
+    let resultDivide = number1 / number2;
+    output.value = resultDivide;
+    console.log(resultDivide);
+    return resultDivide;
+  }
+}
+
+// function to convert calculation input into two numbers at the operator
+function convertInput(calculation) {
+  let inputArray = calculation.split(currentOperator);
+  let input1 = inputArray[0];
+  let input2 = inputArray[1];
+
+  input1 = parseInt(input1);
+  input2 = parseInt(input2);
+  // create object to return multiple values 
+  let inputs = {input1: input1, input2: input2};
+  console.log(inputArray);
+  console.log(inputs);
+  // return inputs object to equalClick function that called it
+  // equalClick can unpack the object to pass arguments to arithmetic
+  // functions
+  return inputs;
+}
+
+```
+- I'm going to move the calculations currently being called in convertInput to equalClick as my next goal to organise the logic encapsulation. It was a step in the right direction to break up the calculate function as I'm trying to avoid too much complexity in one function.  However calling the calculations withing convertInput is giving convertInput two jobs when it should have one, converting input into number type.  The equalClick function should handle calling the arithmetic functions instead. 
+- This will require convertInput to return the parsed inputs to equalClick function, which will call the appropriate arithmetic function based on the currentOperator and pass the converted  numbers to them as arguments since I'm returning more than one thing and eventually plan to tackle longer calculations I need to decide what form to return the numbers to equalClick as. The only way to return multiple values according to MDN is to create and object or an array

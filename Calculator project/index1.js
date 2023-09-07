@@ -46,4 +46,4 @@ for (let button of buttons) {
     }
    
 }
-//This code is the first iteration for creating the calculator button input display 
+//This code is the first iteration for creating the calculator button input and display 
