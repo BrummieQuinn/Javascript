@@ -918,9 +918,7 @@ function equalClick(button) {
   if (buttonEqual === '=') {
     convertInput(currentValue);
     // handle returned object from convertInput here
-    // use a for in loop to access properties
-    for(let input in inputs) {
-      console.log(input.input1, input.input2);
+      console.log(inputs.input1, inputs.input2);
     } if (current Operator === '+') {
       add(input.input1, input.input2);
     }
@@ -991,3 +989,193 @@ function convertInput(calculation) {
 ```
 - I'm going to move the calculations currently being called in convertInput to equalClick as my next goal to organise the logic encapsulation. It was a step in the right direction to break up the calculate function as I'm trying to avoid too much complexity in one function.  However calling the calculations withing convertInput is giving convertInput two jobs when it should have one, converting input into number type.  The equalClick function should handle calling the arithmetic functions instead. 
 - This will require convertInput to return the parsed inputs to equalClick function, which will call the appropriate arithmetic function based on the currentOperator and pass the converted  numbers to them as arguments since I'm returning more than one thing and eventually plan to tackle longer calculations I need to decide what form to return the numbers to equalClick as. The only way to return multiple values according to MDN is to create and object or an array
+
+### Planning:
+(08/09/2023)
+- Todays goal is to finish the refactoring I started yesterday.  I want to make sure I follow best practices, and while I still don't know much about optimisation and performance.  I do want to make sure the functions are written with minimal cyclomatic complexity, easy to maintain should I choose to make add or update the code and they should be modular
+- I've looked at the for in loop and it seems that it would be overkill on an object containing two values. With that in mind, I've decided to just access the properties directly within the equalClick function its returned to.  Since I'm now extending the if statement in the equalClick I'm not sure if it'll over complicate things unless I try it
+- I've created the object in convertInput and returned it to equalClick by assigning it to a variable of the same name, I may need to change its name but for now I'm just trying to get it written cleanly.  
+- If I extend the if statement within equalClick I can remove the logic from the arithmetic functions and allow them to just handle their calculations.
+- By refactoring my code in this way my equalClick function will centralise the calculation logic leading to easier to read code and easier maintainability.
+- I changed the object variable name to numberInputs, on reflection if keeping my code easy to understand is also a priority, I shouldn't create confusing or duplicated variables.
+- I'm only going to add one arithmetic function to equalClick function for now, no point trying to work on too much at once and also once I get that function to call correctly within equalClicks it will be a matter of duplicating it for the others.
+- Giving the logic of which arithmetic function to call also means I can add relevant edge case logic to the arithmetic functions without worrying about over complicating them with additional condtions.
+- The add() function is being called correctly so I'll move the others over and then I can begin adding edge case conditions to the different arithmetic functions
+- Before I add anymore functionality to the calculator I think it's time to create the stylesheet for the user interface, when thats completed, it will be a fully functional simple calculator I can build upon
+- The logical choice would be to handle the double operators issue within the operatorClick function since I'm keeping it simple for now I will output Invalid input via operatorClick for all double operator input including **.
+- When I'm ready to add that function to my calculator I have left the code in a good place for it.  I've also realised belatedly I will need to come up with a way to handle the input of negative numbers. I believe I can make a separate negativeInput function I can then pass the currentValue to this function to handle the parsing of this string for the necessary values to process.
+- I believe this may be the way the right path to add further capabilities to my calculator in a modular way without adding further complexity to the functions I currently have. 
+- My code now looks like this:
+```Javascript
+// refactored from index2.js
+// calculator button input display
+// variable assignment to document elements
+const input = document.getElementById('input');
+let output = document.getElementById('output');
+const buttons = document.querySelectorAll('.buttons');
+
+//variables for calculator input
+let currentValue = '';
+let currentOperator = '';
+let previousValue = input.value;
+
+// add event listeners to buttons using for of loop
+// creates an event object (button)
+for (let button of buttons) {
+  button.addEventListener('click', numberClick);
+  button.addEventListener('click', operatorClick);
+  button.addEventListener('click', equalClick);
+  button.addEventListener('click', clearClick);
+}
+
+// function to handle number buttons
+// pass event object created in for loop to function
+function numberClick(button) {
+  // assign element innerHTML to variable through event.target.innerHTML
+  let buttonNumbers = button.target.innerHTML;
+  // add condition for numbers
+  if (buttonNumbers >= '0' && buttonNumbers <= '9') {
+    // currentValue: add and assign button content
+    currentValue += buttonNumbers;
+    // previousValue: assign currentValue
+    previousValue = currentValue;
+    // update input to reflect currentValue
+    input.value = currentValue;
+  }
+}
+
+// function to handle operator buttons
+function operatorClick(button) {
+  let buttonOperators = button.target.innerHTML;
+  if (
+    buttonOperators === '+' ||
+    buttonOperators === '-' ||
+    buttonOperators === '*' ||
+    buttonOperators === '/'
+  ) {
+    currentOperator = buttonOperators;
+    previousValue = currentValue;
+    currentValue += currentOperator;
+    input.value = previousValue + currentOperator;
+  } else if (
+    currentOperator === '++' ||
+    currentOperator === '--' ||
+    currentOperator === '//' ||
+    currentOperator === '**'
+   ) {
+    output.value = 'Invalid Input!';
+    console.log(currentOperator);
+   }
+}
+
+// function to handle clear button
+function clearClick(button) {
+  let buttonClear = button.target.innerHTML;
+  if (buttonClear === 'clear') {
+    currentValue = '';
+    previousValue = '';
+    currentOperator = '';
+    input.value = currentValue;
+    output.value = currentValue;
+  }
+}
+
+// function to handle equals button
+function equalClick(button) {
+  let buttonEqual = button.target.innerHTML;
+  if (buttonEqual === '=') {
+    // assign convertInput function to variable to call and to access returned object
+    let numbers = convertInput(currentValue);
+    // access returned inputs object and pass as arguments to arithmetic functions
+    let number1 = numbers.input1;
+    let number2 = numbers.input2;
+    // use conditions to call appropriate arithmetic functions
+    if (currentOperator === '+') {
+     add(number1, number2);
+    } else if (currentOperator === '-') {
+      subtract(number1, number2);
+    } else if (currentOperator === '*') {
+      multiply(number1, number2);
+    } else if (currentOperator === '/') {
+      divide(number1, number2);
+    } else {
+      output.value = 'Invalid input';
+    }
+
+    // console checks
+    console.log(numbers);
+    console.log(output.value);
+
+  }
+}
+
+// functions to handle calculations
+function add(number1, number2) {
+    let resultAdd = number1 + number2;
+    output.value = resultAdd;
+    console.log(resultAdd);
+    return resultAdd;
+}
+
+function subtract(number1, number2) {
+    let resultSubtract = number1 - number2;
+    output.value = resultSubtract;
+    console.log(resultSubtract);
+    return resultSubtract;
+  }
+
+function multiply(number1, number2) {
+    let resultMultiply = number1 * number2;
+    output.value = resultMultiply;
+    console.log(resultMultiply);
+    return resultMultiply;
+}
+  
+function divide(number1, number2) {
+    let resultDivide = number1 / number2;
+    output.value = resultDivide;
+    console.log(resultDivide);
+    return resultDivide;
+  }
+
+// function to convert calculation input into two numbers at the operator
+function convertInput(calculation) {
+  // split input at currentOperator
+  let inputArray = calculation.split(currentOperator);
+  // assign variables to array index positions
+  let input1 = inputArray[0];
+  let input2 = inputArray[1];
+  // convert to a number type
+  input1 = parseInt(input1);
+  input2 = parseInt(input2);
+  // create an object to return to equalClick function
+  let inputs = {
+    input1: input1,
+    input2: input2
+  };
+  // return inputs object to equalClick function that called it
+  return inputs;
+}
+
+```
+- To handle invalid inputs, looking up and using the string method includes in the operatorClick function has allowed me to rethink how I'll handle input that my calculator can't calculate at the moment, such as multiple calculations in one go
+- I'm going to add an invalidInput function that calls the convertInput function and checks if inputs.input1 is NaN and inputs.input2 is NaN.  That function will then update  output.value with invalid input
+- This will cause another refactor of code I think as invalidInput may need to interact with more functions than just convertInput. If I handle all invalid input here though, I can add the double operators check here too and take some of the extra logic from the operatorClick function that while related could be dealt with as invalidInput instead.
+```Javascript
+function invalidInput(inputToCheck) {
+let inputToCheck = convertInput(inputToCheck);
+if (isNaN(inputToCheck.input2) || isNaN(inputToCheck.input2)) {
+  output.value = 'Invalid Input! Please click "clear" and start again';
+}else if (
+    currentOperator === '++' ||
+    currentOperator === '--' ||
+    currentOperator === '//' ||
+    currentOperator === '**'
+   ) {
+    output.value = 'Invalid Input! Please click "clear" and start again';
+    console.log(currentOperator);
+   }
+}
+```
+- I think my plan to centralise the handling of invalid input is a good one to follow, however I need to have a think about how it would be called and the way I what to do with return values. My current thoughts are to call from the equal function at the same time it calls the convert function using isNaN results in a boolean value so I need to think how I'm going to write the condtion and how to handle the returned value of true/false.
+- That being said as a simple calculator it works and I've covered the most pressing edge cases

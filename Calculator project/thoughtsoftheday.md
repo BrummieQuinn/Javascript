@@ -56,3 +56,9 @@
 - Was I really satisfied? It seemed that even the operatorClick function with the if or condition was fine and that was the one that bothered me (everything else got a median of 7 for statements and 2.5 for cyclomatic complexity).
 - I refactored index1.js and got all the functions for that encapsulated save (5/6 global variables) in index2.js, so why was I so happy to move on to edge cases before I considered whether there was more I could do with function calculate().
 - Looking at the exceptions and JSHint made me realise that I couldn't add the conditions I needed to as the function stands.  Especially when not all edge cases affect all calculations.  I believe refactoring this function at this point is the right move forward.
+
+## 08/09/2023
+- After looking at functions on MDN and coming to the realisation I wasn't returning the value to the function that called it, I now have a clear goal for how to finish refactoring the calculate function cleanly.
+- I keep forgetting where I'm working and wondering when my updates are going to take effect lol, and its still in the markdown file.
+- I can't believe it's only taken a week for me to plan and create a simple calculator.  My panic at the start of this project and self doubt has me, not laughing at my past self, but wondering why it was there in the first place.  While there is greater functionality I can add to the calculator, there's so many other projects I can build next that it may become something I revisit regularly to update the code into something more efficient and cleaner than it is while adding extra functions.
+- More than anything I've proven to myself what I'm capable of and it's only increased my drive to build bigger and better things, who knows, this time next year I could be attempting to build a calculator in C# or python or Java!
