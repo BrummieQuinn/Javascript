@@ -62,3 +62,6 @@
 - I keep forgetting where I'm working and wondering when my updates are going to take effect lol, and its still in the markdown file.
 - I can't believe it's only taken a week for me to plan and create a simple calculator.  My panic at the start of this project and self doubt has me, not laughing at my past self, but wondering why it was there in the first place.  While there is greater functionality I can add to the calculator, there's so many other projects I can build next that it may become something I revisit regularly to update the code into something more efficient and cleaner than it is while adding extra functions.
 - More than anything I've proven to myself what I'm capable of and it's only increased my drive to build bigger and better things, who knows, this time next year I could be attempting to build a calculator in C# or python or Java!
+
+## 09/09/2023
+- I'm actually really excited for the styling and design part, unusual since the possibilities with CSS used to overwhelm me initially.  Now I understand it alot more I would like to push my abilities with what do in terms of styling and layout.  I can also incorporate Javascript into the design and layout

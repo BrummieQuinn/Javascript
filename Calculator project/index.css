@@ -1,0 +1,52 @@
+/* * {
+  outline: 1px solid blueviolet;
+} */
+@font-face {
+  font-family: 'Chakra Petch';
+  src:url(https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,500;1,400;1,500)
+}
+/* '&family=Tektur:wght@400;500&display=swap' */
+body {
+  display: flex;
+  flex-flow: column wrap;
+  width: 100vmin;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
+}
+
+.title {
+ 
+  width: 100%;
+  text-align: center;
+}
+.introduction {
+  width: 100%;
+  text-align: center;
+  
+}
+
+.calculator_container {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  width: 100%;
+  outline: 2px solid black;
+}
+
+.display_container {
+  display: flex;
+  flex-flow: column wrap;
+  outline: 2px solid red;
+}
+
+
+
+.buttons_container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  outline: 2px solid blue;
+}

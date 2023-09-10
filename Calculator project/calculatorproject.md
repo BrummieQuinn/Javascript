@@ -1178,4 +1178,12 @@ if (isNaN(inputToCheck.input2) || isNaN(inputToCheck.input2)) {
 }
 ```
 - I think my plan to centralise the handling of invalid input is a good one to follow, however I need to have a think about how it would be called and the way I what to do with return values. My current thoughts are to call from the equal function at the same time it calls the convert function using isNaN results in a boolean value so I need to think how I'm going to write the condtion and how to handle the returned value of true/false.
-- That being said as a simple calculator it works and I've covered the most pressing edge cases
+- That being said as a simple calculator it works and I've covered the most pressing edge cases.  I'm now ready to work on the style and layout for my calculator.  As web accessibility is my main priority in this regard I will work mobile first
+- idea: convertInput function or another created to handle more than one calculation in which case it could return an object with possibly dynamically added values?and use slice() method on array of input to check for additional values that can be split at the operator
+
+### Planning:
+(09/09/2023)
+- Today I'm working on the design and layout for the calculator using CSS.  I haven't fully decided on the direction to in layout, so I think today will be experimentation
+- After thinking about the design some more, while adding extra content to the HTML including new elements, I think the calculator part should definitely use flexbox, for the simple case that if I need to add any extra buttons, it shouldn't disrupt the design
+- I have also decided on the order I will focus the design.  The calculator itself will probably take up most of my time trying to get right.  I want the buttons to line up underneath the calculation input and result output
+

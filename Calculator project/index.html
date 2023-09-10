@@ -6,13 +6,39 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="author" content="Georgina Carrington">
     <meta name="description" content="a functional calculator created with vanilla HTML, CSS and Javascript">
-    <title>Calculator</title>
-    <link rel="stylesheet" href="">
+    <title> Simple Calculator</title>
+    <link rel="stylesheet" href="index.css">
 </head>
+<body>
 <header>
-    <h1 class="title">Calculator</h1>
-    <p class="introduction">Welcome to my (currently a work in progress) calculator project</p>
+    <h1 class="title">Simple Calculator</h1>
+    <p class="introduction">
+        Welcome to my calculator project.
+        <br>
+        This is a simple calculator capable of addition, subtraction, division and multiplication.
+    </p>
 </header>
+<section class="instructions_container">
+    <ol class="instructions">
+        <li class="instruction_one">
+            Enter entire calculation e.g 1 + 2 using the buttons provided
+        </li>
+        <li class="instruction_two">
+            Click '=' for the result
+        </li>
+        <li class="instruction_three">
+            Click 'clear' to enter further calculations.
+            <br>
+              Also use if a mistake made during input
+        </li>
+    </ol>
+    <ul class="explanation_container">
+        <li class="explanation_one">Please be aware this calculator is currently only capable of simple calculations</li>
+         <li class="explanation_two">Division by zero will result in 'Infinity' while using double operators or negative numbers will result in errors</li>
+    </ul>
+    <br>
+   
+</section>
 <main class="calculator_container">
     <form class="display_container">
         
@@ -55,8 +81,22 @@
       <button id="clear" class="buttons" type="reset">clear</button>
 
     </section>
+    
 </main>
-<body>
+<section class="description_container">
+        <p class="description">
+            This calculator has been created using HTML, CSS and Javascript for the calculator logic and is the first full web development project I have built from scratch
+        </p>
+        <p class="description">
+            For accessibility reasons, I have chosen to use semantic HTML tags and 'mobile first' design.  I have also made my design and layout choices with this in mind.
+        </p>
+    </section>
+
+    <footer class="project_github">
+        <p class="project_link">
+            Further details including full documentation I made during the building of the calculator can be found at my github repository <a href="https://github.com/BrummieQuinn/Javascript/tree/main/Calculator%20project">Calculator Project</a>
+        </p>
+    </footer>
     <script src="index3.js" defer></script>
     <noscript>If you're seeing this, your Javascript is disabled</noscript>
 </body>
