@@ -5,7 +5,6 @@
 
 ## Complete Projects:
 1. **Calculator** - A simple calculator using vanilla Javascript, HTML and CSS capable of simple addition, subtraction, division and multiplication using user inputs.
-                  - Available to view at:
-                                         - Code Pen: [https://codepen.io/BrummieQuinn/pen/wvRdQJm]
-                                         - Netlify:
+                  - Code Pen: [https://codepen.io/BrummieQuinn/pen/wvRdQJm]
+                                        
                                        
