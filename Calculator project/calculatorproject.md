@@ -1,4 +1,4 @@
-# Calculator project: (start 2/09/2023)
+# Calculator project: (start 2/09/2023 - finish 12/09/2023)
 
 ## Objective:
 - to create a calculator with basic functionality to start, gradually adding more complex functionality as I progress
@@ -1187,3 +1187,16 @@ if (isNaN(inputToCheck.input2) || isNaN(inputToCheck.input2)) {
 - After thinking about the design some more, while adding extra content to the HTML including new elements, I think the calculator part should definitely use flexbox, for the simple case that if I need to add any extra buttons, it shouldn't disrupt the design
 - I have also decided on the order I will focus the design.  The calculator itself will probably take up most of my time trying to get right.  I want the buttons to line up underneath the calculation input and result output
 
+
+### Planning:
+(12/09/2023)
+- I'm continuing my progress on my calculator's css.  I had to take a couple of days off due to the heatwave and my fibromyalgia, I wasn't able to concentrate enough to do my best.
+- That said I had a lot of thoughts on how I go about my design while I took my break and I'm currently happy with how it's going.
+- I have included a title, a description of the project and the intructions in the html.  I decided to have my calculator sit between these two pieces of information break up the large amount of text with the actual project.
+- I want the calculator to have a slightly realistic feel, so I searched through google fonts (for a veeeeerrrry long time) and found text that resembles digital font the most.  I narrowed it down to two but finally decided on Tektur, cursive was the winner after I tried both out.
+- Everything within the page is in an easily maintainable container, there is no fear of changing something without knowing exactly what will be change however I have added comments as it would not be the first time I came back to a project and forgotten what the CSS rules relate to
+- I decided to use flexbox on the display container (input and output) in order for them to appear in a column above the buttons
+- With the buttons I decided to use grid, in order for the buttons to line up realistically I added gap
+- I had some trouble centering the content for desktop after finishing the edits for my mobile first layout, but  after adding padding to .description_container I was able to get it to work in the media query. I'm quietly confident that I  have covered both mobile and desktop rendering of the calculator webpage
+- With the desktop styling complete I can officially call this calculator project over.  I will continue to update it with greater functionality as my Javascript proficiency grows, I will also refactor my code to reflect my growth as both a Javascript developer and a Web Developer.
+(15:00 - 12/09/2023)

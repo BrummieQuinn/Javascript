@@ -1,52 +1,116 @@
-/* * {
-  outline: 1px solid blueviolet;
-} */
-@font-face {
-  font-family: 'Chakra Petch';
-  src:url(https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,500;1,400;1,500)
-}
-/* '&family=Tektur:wght@400;500&display=swap' */
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,500;1,400;1,500&family=Tektur:wght@400;500&display=swap');
+/* Base page styles */
 body {
-  display: flex;
-  flex-flow: column wrap;
   width: 100vmin;
   height: auto;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family:  sans-serif;
+  font-family: 'Tektur', cursive;
   font-size: 16px;
 }
-
+/* Header */
 .title {
- 
   width: 100%;
   text-align: center;
 }
+
 .introduction {
   width: 100%;
   text-align: center;
   
 }
 
-.calculator_container {
-  display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-  width: 100%;
-  outline: 2px solid black;
+.instructions_container {
+  border-bottom: 0;
 }
 
+/* Calculator layout*/
+.calculator_container {
+  width: 50%;
+  margin: 10vh auto 0 auto;
+  box-shadow: 0 0 0.3125rem 0.1875rem rgb(0, 0, 0); 
+  border-radius:  0.3125rem;
+  background-color: rgba(153, 153, 153, 0.301) ;
+  outline: 2px solid black;
+  margin: 0 5rem 0 6rem;
+ 
+}
+/* calculator display: affects the input and output layout */
 .display_container {
   display: flex;
   flex-flow: column wrap;
-  outline: 2px solid red;
+  align-items: stretch;
+  align-content: stretch;
+}
+/* labels for input and output */
+label {
+  padding-left: 0.5rem;
 }
 
+#input {
+  font-family: 'Tektur', cursive;
+  background-color: rgba(153, 205, 50, 0.685);
+  width: 85%;
+  align-self: center;
 
+}
 
+#output {
+  background-color: rgba(153, 205, 50, 0.685);
+  width: 85%;
+  align-self: center;
+  outline: 1px solid black;
+  border-radius:  0.1125rem;
+}
+/* Calculator buttons layout */
 .buttons_container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  outline: 2px solid blue;
+  grid-gap:  0.3125rem;
+  border-bottom: 1px solid yellowgreen;
+  border-left: 1px solid yellowgreen;
+  padding: 0.5rem;
+}
+/* All calculator buttons */
+.buttons {
+    outline: 0.5px solid black;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.3125rem;  
+}
+/* Buttons depress click */
+.buttons:active {
+    transform: translateY(4px);
+}
+
+.buttons:hover {
+    outline: 2px solid white;
+    transition: 0.5s ease-in-out;
+}
+
+.description_container {
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.project_github {
+  text-align: center;
+}
+/* Desktop display layout */
+@media (min-width: 768px) {
+  body {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .description_container {
+    padding: 0 30rem;
+  }
 }
